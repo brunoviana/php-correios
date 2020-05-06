@@ -12,7 +12,7 @@ class RequestTest extends TestCase
         $request = new Request([]);
 
         $this->assertEquals(
-            'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?',
+            'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx',
             $request->url()
         );
     }

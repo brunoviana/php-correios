@@ -4,7 +4,7 @@ namespace BrunoViana\Correios\CalculoPrecoPrazo\Client;
 
 class Request
 {
-    private $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?';
+    private $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
 
     private $dados = [];
 

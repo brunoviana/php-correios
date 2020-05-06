@@ -91,6 +91,11 @@ class Response
     
     public function mensagemErro()
     {
+        // Isso pode acontecer na conversão do retorno para array
+        if (is_array($this->dados['MsgErro'])) {
+            return '';
+        }
+
         return $this->dados['MsgErro'];
     }
 

@@ -5,10 +5,11 @@ namespace BrunoViana\Correios\CalculoPrecoPrazo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\AdapterInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\ClientInterface;
 
-class Client
+class Client implements ClientInterface
 {
-    private $clientAdapter;
+    protected $clientAdapter;
 
     public static function novo()
     {

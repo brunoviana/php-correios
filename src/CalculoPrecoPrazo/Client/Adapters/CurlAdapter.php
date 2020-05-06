@@ -9,7 +9,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\AdapterInterface;
 
 class CurlAdapter implements AdapterInterface
 {
-    private $http;
+    protected $http;
 
     public static function novo()
     {

@@ -207,6 +207,15 @@ class ResponseTest extends TestCase
             'Não foi encontrada precificação. ERP-008: Dimensoes nao localizadas ou ultrapassam os limites aceitos para este tipo de objeto(-1).',
             $response->mensagemErro()
         );
+
+        $response = new Response([
+            'MsgErro' => []
+        ], 200);
+
+        $this->assertEquals(
+            '',
+            $response->mensagemErro()
+        );
     }
 
     public function test_Deve_Retornar_Codigo_Http_Com_Sucesso()
