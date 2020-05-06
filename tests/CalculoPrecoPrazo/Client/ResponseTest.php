@@ -11,7 +11,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'Codigo' => '04014'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '04014',
@@ -23,7 +23,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'Valor' => '9,99'
-        ]);
+        ], 200);
 
         $this->assertIsFloat($response->valor());
 
@@ -37,7 +37,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'PrazoEntrega' => '0'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '0',
@@ -49,7 +49,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'ValorSemAdicionais' => '9,99'
-        ]);
+        ], 200);
 
         $this->assertIsFloat($response->valorSemAdicionais());
 
@@ -63,7 +63,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'ValorMaoPropria' => '9,99'
-        ]);
+        ], 200);
 
         $this->assertIsFloat($response->valorMaoPropria());
 
@@ -77,7 +77,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'ValorAvisoRecebimento' => '9,99'
-        ]);
+        ], 200);
 
         $this->assertIsFloat($response->valorAvisoRecebimento());
 
@@ -91,7 +91,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'ValorValorDeclarado' => '9,99'
-        ]);
+        ], 200);
 
         $this->assertIsFloat($response->valorValorDeclarado());
 
@@ -105,7 +105,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'EntregaDomiciliar' => 'S'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             'S',
@@ -114,7 +114,7 @@ class ResponseTest extends TestCase
 
         $response2 = new Response([
             'EntregaDomiciliar' => ''
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '',
@@ -124,7 +124,7 @@ class ResponseTest extends TestCase
         // pode ficar assim na conversão do array
         $response3 = new Response([
             'EntregaDomiciliar' => []
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '',
@@ -136,7 +136,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'EntregaSabado' => 'S'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             'S',
@@ -145,7 +145,7 @@ class ResponseTest extends TestCase
 
         $response2 = new Response([
             'EntregaSabado' => ''
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '',
@@ -155,7 +155,7 @@ class ResponseTest extends TestCase
         // pode ficar assim na conversão do array
         $response3 = new Response([
             'EntregaSabado' => []
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '',
@@ -167,7 +167,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'obsFim' => 'Nenhuma observação'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             'Nenhuma observação',
@@ -177,7 +177,7 @@ class ResponseTest extends TestCase
         // pode ficar assim na conversão do array
         $response3 = new Response([
             'obsFim' => []
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '',
@@ -189,7 +189,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'Erro' => '-888'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             '-888',
@@ -201,11 +201,28 @@ class ResponseTest extends TestCase
     {
         $response = new Response([
             'MsgErro' => 'Não foi encontrada precificação. ERP-008: Dimensoes nao localizadas ou ultrapassam os limites aceitos para este tipo de objeto(-1).'
-        ]);
+        ], 200);
 
         $this->assertEquals(
             'Não foi encontrada precificação. ERP-008: Dimensoes nao localizadas ou ultrapassam os limites aceitos para este tipo de objeto(-1).',
             $response->mensagemErro()
+        );
+    }
+
+    public function test_Deve_Retornar_Codigo_Http_Com_Sucesso()
+    {
+        $response = new Response([], 200);
+
+        $this->assertEquals(
+            200,
+            $response->codigoHttp()
+        );
+
+        $response2 = new Response([], 401);
+
+        $this->assertEquals(
+            401,
+            $response2->codigoHttp()
         );
     }
 }

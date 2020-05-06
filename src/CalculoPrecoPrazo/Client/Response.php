@@ -6,9 +6,17 @@ class Response
 {
     private $dados = [];
 
-    public function __construct(array $dados)
+    private $codigoHttp;
+
+    public function __construct(array $dados, int $codigoHttp)
     {
         $this->dados = $dados;
+        $this->codigoHttp = $codigoHttp;
+    }
+
+    public function codigoHttp()
+    {
+        return $this->codigoHttp;
     }
 
     public function codigo()

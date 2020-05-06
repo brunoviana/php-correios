@@ -2,11 +2,11 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client;
 
-interface HttpRequest
+interface HttpRequestInterface
 {
     public function setOption($name, $value);
     public function execute();
-    public function getInfo($name);
+    public function getInfo($name = null);
     public function close();
     public function reset();
 }

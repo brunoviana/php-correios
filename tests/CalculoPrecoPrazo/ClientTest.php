@@ -1,21 +1,28 @@
 <?php
 
-namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Client;
+namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo;
 
 use BrunoViana\Correios\Tests\TestCase;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
-use BrunoViana\Correios\CalculoPrecoPrazo\Client\CurlAdapter;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequest;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
 
-class CurlAdapterTest extends TestCase
+class ClientTest extends TestCase
 {
-    public function test_Deve_Realizar_Consulta_Com_Sucesso()
+    public function test_Client_Deve_Realizar_Consulta_Com_Sucesso()
     {
-        $httpMock = $this->createStub(HttpRequest::class);
+        $httpMock = $this->createMock(HttpRequestInterface::class);
         $httpMock->method('execute')->willReturn(
             $this->xmlRetornoCorreios()
         );
+        
+        $httpMock->method('getInfo')
+                    ->with(CURLINFO_HTTP_CODE)
+                    ->willReturn(200);
+
+        $curlAdapter = new CurlAdapter($httpMock);
         
         $request = new Request([
             'servicos' => [
@@ -36,7 +43,7 @@ class CurlAdapterTest extends TestCase
             'aviso_recebimento' => 'N',
         ]);
 
-        $client = new CurlAdapter($httpMock);
+        $client = new Client($curlAdapter);
         $respostas = $client->consultar($request);
 
         $servico = $respostas[0];
@@ -77,7 +84,4 @@ class CurlAdapterTest extends TestCase
            </cServico>
         </Servicos>';
     }
-
-    // validação de parametros
-    // exception se retorna sttus != 200
 }

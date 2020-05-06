@@ -2,9 +2,9 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Http;
 
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequest;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
 
-class Curl implements HttpRequest
+class Curl implements HttpRequestInterface
 {
     private $handle = null;
 
@@ -23,9 +23,13 @@ class Curl implements HttpRequest
         return curl_exec($this->handle);
     }
 
-    public function getInfo($name)
+    public function getInfo($name = null)
     {
-        return curl_getinfo($this->handle, $name);
+        if ($name) {
+            return curl_getinfo($this->handle, $name);
+        }
+
+        return curl_getinfo($this->handle);
     }
 
     public function close()
