@@ -106,4 +106,81 @@ class CalculadorService
             $this->request()
         );
     }
+
+    public function servicos(array $servicos)
+    {
+        $this->dados['servicos'] = $servicos;
+
+        return $this;
+    }
+
+    public function item(array $item)
+    {
+        $this->dados['itens'][] = $item;
+
+        return $this;
+    }
+
+    public function itens(array $itens)
+    {
+        $this->dados['itens'] = $itens;
+
+        return $this;
+    }
+
+    public function usuario(string $usuario)
+    {
+        $this->dados['usuario'] = $usuario;
+
+        return $this;
+    }
+
+    public function senha(string $senha)
+    {
+        $this->dados['senha'] = $senha;
+
+        return $this;
+    }
+
+    public function origem(string $origem)
+    {
+        $this->dados['origem'] = $origem;
+
+        return $this;
+    }
+
+    public function destino(string $destino)
+    {
+        $this->dados['destino'] = $destino;
+
+        return $this;
+    }
+
+    public function formato(int $formato)
+    {
+        $this->dados['formato'] = $formato;
+
+        return $this;
+    }
+
+    public function maoPropria($maoPropria)
+    {
+        $this->dados['mao_propria'] = $maoPropria;
+
+        return $this;
+    }
+
+    public function valorDeclarado(float $valorDeclarado)
+    {
+        $this->dados['valor_declarado'] = $valorDeclarado;
+
+        return $this;
+    }
+
+    public function avisoRecebimento($avisoRecebimento)
+    {
+        $this->dados['aviso_recebimento'] = $avisoRecebimento;
+
+        return $this;
+    }
 }

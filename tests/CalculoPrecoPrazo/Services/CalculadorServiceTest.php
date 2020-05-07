@@ -16,18 +16,7 @@ class CalculadorServiceTest extends TestCase
 {
     public function test_Calculador_Deve_Calcular_Passando_Dados_Por_Array_Com_Sucesso()
     {
-        $httpMock = $this->createMock(HttpRequestInterface::class);
-
-        $httpMock->method('execute')->willReturn(
-            $this->xmlRetornoCorreios()
-        );
-        
-        $httpMock->method('getInfo')
-                    ->with(CURLINFO_HTTP_CODE)
-                    ->willReturn(200);
-
-        $curlAdapter = new CurlAdapter($httpMock);
-        $client = new Client($curlAdapter);
+        $client = $this->client();
         $encomenda = new Caixa();
 
         $calculador = new CalculadorService(
@@ -41,20 +30,81 @@ class CalculadorServiceTest extends TestCase
         $this->assertServico($responses[0]);
     }
 
+    public function test_Calculador_Deve_Calcular_Passando_Dados_Por_Metodos_Com_Sucesso()
+    {
+        $client = $this->client();
+        $encomenda = new Caixa();
+
+        $calculador = new CalculadorService(
+            $client,
+            $encomenda
+        );
+
+        $calculador->servicos([
+                        '41106'
+                    ])
+                    ->item([
+                        'quantidade' => 1,
+                        'peso' => 0.71,
+                        'comprimento' => 31,
+                        'altura' => 27,
+                        'largura' => 31,
+                        'diametro' => 0,
+                    ])
+                    ->usuario('')
+                    ->senha('')
+                    ->origem('60842-130')
+                    ->destino('22775-051')
+                    ->formato(1)
+                    ->maoPropria('N')
+                    ->valorDeclarado(0)
+                    ->avisoRecebimento('N');
+
+        $responses = $calculador->calcular();
+
+        $this->assertServico($responses[0]);
+    }
+
+    public function test_Calculador_Deve_Calcular_Passando_Dados_Usando_Metodo_Itens()
+    {
+        $client = $this->client();
+        $encomenda = new Caixa();
+
+        $calculador = new CalculadorService(
+            $client,
+            $encomenda
+        );
+
+        $calculador->servicos([
+                        '41106'
+                    ])
+                    ->itens([
+                        [
+                            'quantidade' => 1,
+                            'peso' => 0.71,
+                            'comprimento' => 31,
+                            'altura' => 27,
+                            'largura' => 31,
+                            'diametro' => 0,
+                        ]
+                    ])
+                    ->usuario('')
+                    ->senha('')
+                    ->origem('60842-130')
+                    ->destino('22775-051')
+                    ->formato(1)
+                    ->maoPropria('N')
+                    ->valorDeclarado(0)
+                    ->avisoRecebimento('N');
+
+        $responses = $calculador->calcular();
+
+        $this->assertServico($responses[0]);
+    }
+
     public function test_Calculador_Deve_Usar_Encomenda_Corretamente_Se_Nao_For_Passado()
     {
-        $httpMock = $this->createMock(HttpRequestInterface::class);
-
-        $httpMock->method('execute')->willReturn(
-            $this->xmlRetornoCorreios()
-        );
-        
-        $httpMock->method('getInfo')
-                    ->with(CURLINFO_HTTP_CODE)
-                    ->willReturn(200);
-
-        $curlAdapter = new CurlAdapter($httpMock);
-        $client = new Client($curlAdapter);
+        $client = $this->client();
 
         $calculador = new CalculadorService(
             $client,
@@ -79,6 +129,30 @@ class CalculadorServiceTest extends TestCase
         $calculador = CalculadorService::novo($dados);
 
         $calculador->calcular();
+    }
+
+    private function client()
+    {
+        $httpMock = $this->createMock(HttpRequestInterface::class);
+
+        $httpMock->method('execute')->willReturn(
+            $this->xmlRetornoCorreios()
+        );
+
+        $httpMock->expects($this->at(1))
+                    ->method('setOption')
+                    ->with(
+                        $this->equalTo(CURLOPT_URL),
+                        $this->equalTo($this->requestUrl())
+                    );
+        
+        $httpMock->method('getInfo')
+                    ->with(CURLINFO_HTTP_CODE)
+                    ->willReturn(200);
+
+        $curlAdapter = new CurlAdapter($httpMock);
+        
+        return new Client($curlAdapter);
     }
 
     private function assertServico($servico)
@@ -145,5 +219,25 @@ class CalculadorServiceTest extends TestCase
                 <MsgErro></MsgErro>
             </cServico>
         </Servicos>';
+    }
+
+    private function requestUrl()
+    {
+        return 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?'
+                .'nCdServico=41106&'
+                .'nCdEmpresa=&'
+                .'sDsSenha=&'
+                .'sCepOrigem=60842130&'
+                .'sCepDestino=22775051&'
+                .'nVlPeso=0.71&'
+                .'nCdFormato=1&'
+                .'nVlComprimento=29.6&'
+                .'nVlAltura=29.6&'
+                .'nVlLargura=29.6&'
+                .'nVlDiametro=0&'
+                .'sCdMaoPropria=N&'
+                .'nVlValorDeclarado=0&'
+                .'sCdAvisoRecebimento=N&'
+                .'StrRetorno=XML';
     }
 }
