@@ -4,8 +4,9 @@ namespace BrunoViana\Correios\CalculoPrecoPrazo;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Item;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\EncomendaInterface;
 
-abstract class Encomenda
+abstract class Encomenda implements EncomendaInterface
 {
     const CAIXA = 1;
 
@@ -22,7 +23,6 @@ abstract class Encomenda
         }
 
         switch ($formato) {
-
             case self::CAIXA:
                 return new Caixa();
         }
@@ -44,7 +44,7 @@ abstract class Encomenda
         float $altura,
         float $largura,
         float $diametro = 0
-    ) {
+    ) : Item {
         $item = new Item(
             $quantidade,
             $peso,
@@ -59,7 +59,7 @@ abstract class Encomenda
         return $item;
     }
 
-    public function itens()
+    public function itens() : array
     {
         return $this->itens;
     }

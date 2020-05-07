@@ -6,10 +6,13 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Client;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\ClientInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\EncomendaInterface;
 
 class CalculadorService
 {
     protected $client;
+    
+    protected $encomenda;
 
     protected $dados = [
         'servicos' => [],
@@ -23,10 +26,18 @@ class CalculadorService
         'valor_declarado' => '',
         'aviso_recebimento' => '',
     ];
+
+    public static function novo($dados = [])
+    {
+        // Encomenda só é instanciado depois pois não sei se o formato já foi definido em $dados
+        return new self(Client::novo(), null, $dados);
+    }
     
-    public function __construct(ClientInterface $client, array $dadosRequest = [])
+    public function __construct(ClientInterface $client, EncomendaInterface $encomenda = null, array $dadosRequest = [])
     {
         $this->client = $client;
+        
+        $this->encomenda = $encomenda;
         
         $this->iniciaDados($dadosRequest);
     }
@@ -42,12 +53,14 @@ class CalculadorService
 
     protected function encomenda()
     {
-        $encomenda = Encomenda::nova(
-            (int) $this->dados['formato']
-        );
+        if (!$this->encomenda) {
+            $this->encomenda = Encomenda::nova(
+                $this->dados['formato']
+            );
+        }
 
         foreach ($this->dados['itens'] as $item) {
-            $encomenda->item(
+            $this->encomenda->item(
                 $item['quantidade'],
                 $item['peso'],
                 $item['comprimento'],
@@ -57,10 +70,10 @@ class CalculadorService
             );
         }
 
-        return $encomenda;
+        return $this->encomenda;
     }
 
-    protected function montaRequest()
+    protected function request()
     {
         $encomenda = $this->encomenda();
 
@@ -85,7 +98,7 @@ class CalculadorService
     public function calcular()
     {
         return $this->client->consultar(
-            $this->montaRequest()
+            $this->request()
         );
     }
 }

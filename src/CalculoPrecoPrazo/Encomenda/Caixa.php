@@ -47,7 +47,7 @@ class Caixa extends Encomenda
         float $altura,
         float $largura,
         float $diametro = 0
-    ) {
+    ) : Item {
         $item = parent::item(
             $quantidade,
             $peso,
