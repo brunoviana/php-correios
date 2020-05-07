@@ -27,7 +27,8 @@ class CalculadorService
     public function __construct(ClientInterface $client, array $dadosRequest = [])
     {
         $this->client = $client;
-        $this->dados = $dadosRequest;
+        
+        $this->iniciaDados($dadosRequest);
     }
 
     protected function iniciaDados($dadosRecebidos)
