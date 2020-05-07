@@ -9,7 +9,9 @@ class RequestTest extends TestCase
 {
     public function test_Deve_Retornar_Url_Com_Sucesso()
     {
-        $request = new Request([]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx',
@@ -19,9 +21,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Usuario_Com_Sucesso()
     {
-        $request = new Request([
-            'usuario' => '0001'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'usuario' => '0001'
+            ])
+        );
 
         $this->assertEquals(
             '0001',
@@ -31,7 +35,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Vazio_Se_Usuario_Nao_For_Informado()
     {
-        $request = new Request([]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             '',
@@ -41,9 +47,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Senha_Com_Sucesso()
     {
-        $request = new Request([
-            'senha' => '0002'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'senha' => '0002'
+            ])
+        );
 
         $this->assertEquals(
             '0002',
@@ -53,7 +61,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Vazio_Se_Senha_Nao_For_Informada()
     {
-        $request = new Request([]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             '',
@@ -63,9 +73,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Origem_Com_Sucesso()
     {
-        $request = new Request([
-            'origem' => '60110528'
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             '60110528',
@@ -75,9 +85,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Origem_Sem_Hifen()
     {
-        $request = new Request([
-            'origem' => '60110-528'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'origem' => '60110-528'
+            ])
+        );
 
         $this->assertEquals(
             '60110528',
@@ -87,9 +99,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Origem_Completando_Zero()
     {
-        $request = new Request([
-            'origem' => '4538-132'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'origem' => '4538-132'
+            ])
+        );
 
         $this->assertEquals(
             '04538132',
@@ -99,9 +113,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Destino_Com_Sucesso()
     {
-        $request = new Request([
-            'destino' => '60110528'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'destino' => '60110528'
+            ])
+        );
 
         $this->assertEquals(
             '60110528',
@@ -111,9 +127,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Destino_Sem_Hifen()
     {
-        $request = new Request([
-            'destino' => '60110-528'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'destino' => '60110-528'
+            ])
+        );
 
         $this->assertEquals(
             '60110528',
@@ -123,9 +141,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Destino_Completando_Zero()
     {
-        $request = new Request([
-            'destino' => '4538-132'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'destino' => '4538-132'
+            ])
+        );
 
         $this->assertEquals(
             '04538132',
@@ -135,9 +155,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Peso_Com_Sucesso()
     {
-        $request = new Request([
-            'peso' => 0.150
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             0.150,
@@ -147,9 +167,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Formato_Com_Sucesso()
     {
-        $request = new Request([
-            'formato' => 1
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             1,
@@ -159,9 +179,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Comprimento_Com_Sucesso()
     {
-        $request = new Request([
-            'comprimento' => 17
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             17,
@@ -171,9 +191,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Altura_Com_Sucesso()
     {
-        $request = new Request([
-            'altura' => 15
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             15,
@@ -183,9 +203,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Largura_Com_Sucesso()
     {
-        $request = new Request([
-            'largura' => 12
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             12,
@@ -195,9 +215,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Diametro_Com_Sucesso()
     {
-        $request = new Request([
-            'diametro' => 4
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             4,
@@ -207,9 +227,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Mao_Propria_Com_Sucesso()
     {
-        $request = new Request([
-            'mao_propria' => 'N'
-        ]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             'N',
@@ -219,36 +239,44 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Mao_Propria_Correto_Se_Passar_Booleano_Ou_Inteiro()
     {
-        $requestFalse = new Request([
-            'mao_propria' => false
-        ]);
+        $requestFalse = new Request(
+            $this->dadosRequest([
+                'mao_propria' => false
+            ])
+        );
 
         $this->assertEquals(
             'N',
             $requestFalse->maoPropria()
         );
 
-        $requestTrue = new Request([
-            'mao_propria' => true
-        ]);
+        $requestTrue = new Request(
+            $this->dadosRequest([
+                'mao_propria' => true
+            ])
+        );
 
         $this->assertEquals(
             'S',
             $requestTrue->maoPropria()
         );
 
-        $request0 = new Request([
-            'mao_propria' => 0
-        ]);
+        $request0 = new Request(
+            $this->dadosRequest([
+                'mao_propria' => 0
+            ])
+        );
 
         $this->assertEquals(
             'N',
             $request0->maoPropria()
         );
 
-        $request1 = new Request([
-            'mao_propria' => 1
-        ]);
+        $request1 = new Request(
+            $this->dadosRequest([
+                'mao_propria' => 1
+            ])
+        );
 
         $this->assertEquals(
             'S',
@@ -258,7 +286,9 @@ class RequestTest extends TestCase
 
     public function test_Mao_Propria_Deve_Retornar_Nao_Se_Nao_Declarado()
     {
-        $request = new Request([]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             'N',
@@ -268,9 +298,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Valor_Declarado_Com_Sucesso()
     {
-        $request = new Request([
-            'valor_declarado' => 9.99
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'valor_declarado' => 9.99
+            ])
+        );
 
         $this->assertEquals(
             9.99,
@@ -280,7 +312,9 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Valor_Declarado_Zero_Se_Nao_Declarado()
     {
-        $request = new Request([]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             0,
@@ -290,9 +324,11 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Aviso_Recebimento_Com_Sucesso()
     {
-        $request = new Request([
-            'aviso_recebimento' => 'N'
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'aviso_recebimento' => 'N'
+            ])
+        );
 
         $this->assertEquals(
             'N',
@@ -302,36 +338,44 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Aviso_Recebimento_Correto_Se_Passar_Booleano_Ou_Inteiro()
     {
-        $requestFalse = new Request([
-            'aviso_recebimento' => false
-        ]);
+        $requestFalse = new Request(
+            $this->dadosRequest([
+                'aviso_recebimento' => false
+            ])
+        );
 
         $this->assertEquals(
             'N',
             $requestFalse->avisoRecebimento()
         );
 
-        $requestTrue = new Request([
-            'aviso_recebimento' => true
-        ]);
+        $requestTrue = new Request(
+            $this->dadosRequest([
+                'aviso_recebimento' => true
+            ])
+        );
 
         $this->assertEquals(
             'S',
             $requestTrue->avisoRecebimento()
         );
 
-        $request0 = new Request([
-            'aviso_recebimento' => 0
-        ]);
+        $request0 = new Request(
+            $this->dadosRequest([
+                'aviso_recebimento' => 0
+            ])
+        );
 
         $this->assertEquals(
             'N',
             $request0->avisoRecebimento()
         );
 
-        $request1 = new Request([
-            'aviso_recebimento' => 1
-        ]);
+        $request1 = new Request(
+            $this->dadosRequest([
+                'aviso_recebimento' => 1
+            ])
+        );
 
         $this->assertEquals(
             'S',
@@ -341,7 +385,9 @@ class RequestTest extends TestCase
 
     public function test_Aviso_Recebimento_Deve_Retornar_Nao_Se_Nao_Declarado()
     {
-        $request = new Request([]);
+        $request = new Request(
+            $this->dadosRequest()
+        );
 
         $this->assertEquals(
             'N',
@@ -351,11 +397,13 @@ class RequestTest extends TestCase
 
     public function test_Deve_Retornar_Servicos_Com_Sucesso()
     {
-        $request = new Request([
-            'servicos' => [
-                '04014'
-            ]
-        ]);
+        $request = new Request(
+            $this->dadosRequest([
+                'servicos' => [
+                    '04014'
+                ]
+            ])
+        );
 
         $this->assertEquals(
             [
@@ -363,6 +411,28 @@ class RequestTest extends TestCase
             ],
             $request->servicos()
         );
+    }
+
+    private function dadosRequest($merge = [])
+    {
+        return array_merge([
+            'servicos' => [
+                '04014'
+            ],
+            'usuario' => '',
+            'senha' => '',
+            'origem' => '60110528',
+            'destino' => '04538132',
+            'formato' => 1,
+            'peso' => 0.150,
+            'comprimento' => 17,
+            'altura' => 15,
+            'largura' => 12,
+            'diametro' => 4,
+            'mao_propria' => 'N',
+            'valor_declarado' => 0,
+            'aviso_recebimento' => 'N',
+        ], $merge);
     }
 
     // validar campos do array

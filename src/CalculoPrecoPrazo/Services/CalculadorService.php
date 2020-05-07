@@ -7,6 +7,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\ClientInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\EncomendaInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroNaoInformadoException;
 
 class CalculadorService
 {
@@ -54,6 +55,10 @@ class CalculadorService
     protected function encomenda()
     {
         if (!$this->encomenda) {
+            if (!isset($this->dados['formato']) || empty($this->dados['formato'])) {
+                throw new ParametroNaoInformadoException('formato');
+            }
+
             $this->encomenda = Encomenda::nova(
                 $this->dados['formato']
             );

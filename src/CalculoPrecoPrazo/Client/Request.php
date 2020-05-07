@@ -2,6 +2,8 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Client;
 
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\ValidaRequest;
+
 class Request
 {
     private $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
@@ -10,6 +12,8 @@ class Request
 
     public function __construct(array $dados)
     {
+        (new ValidaRequest())->validar($dados);
+
         $this->dados = $dados;
     }
 
