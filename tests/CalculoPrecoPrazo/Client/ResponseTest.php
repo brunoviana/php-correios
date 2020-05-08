@@ -36,11 +36,11 @@ class ResponseTest extends TestCase
     public function test_Deve_Retornar_Prazo_Entrega_Com_Sucesso()
     {
         $response = new Response([
-            
+            'PrazoEntrega' => '3'
         ], 200);
 
         $this->assertEquals(
-            '0',
+            '3',
             $response->prazoEntrega()
         );
     }
