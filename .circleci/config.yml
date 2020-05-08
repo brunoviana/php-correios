@@ -4,9 +4,7 @@
 #
 version: 2
 jobs:
-  php-7.1:
-    docker:
-      - image: php:7.1-alpine
+  build:
     steps:
       - checkout
       - run:
@@ -33,42 +31,18 @@ jobs:
           path: build/coverage
           destination: coverage
 
-  php-7.2:
-    docker:
-      - image: php:7.2-alpine
-    steps:
-      - checkout
-      - run:
-          name: Instalando xDebug Extension
-          command: |
-            apk add --no-cache --no-progress g++ make autoconf
-            pecl -q install xdebug
-            docker-php-ext-enable xdebug
-      - run:
-          name: Instalando Composer
-          command: |
-            curl -sS https://getcomposer.org/installer | php
-            mv composer.phar /usr/local/bin/composer
-      - run:
-          name: Instalando dependências
-          command: composer install --no-progress --no-interaction
-      - run:
-          name: Realizando testes
-          command: composer test -- --coverage-text
-      - run:
-          name: Checando escrita de código
-          command: composer check-style
-      - store_artifacts:
-          path: build/coverage
-          destination: coverage
-
-  workflows:
-    version: 2
-    tests:
-      jobs:
-        - php-7.0
-        - php-7.1
-        - php-7.2
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build:
+          name: php-7.1
+          docker:
+            - image: php:7.1-alpine
+      - build:
+          name: php-7.2
+          docker:
+            - image: php:7.2-alpine
 
   # build:
     # docker:
