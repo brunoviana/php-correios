@@ -5,6 +5,7 @@ namespace BrunoViana\Correios\CalculoPrecoPrazo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Item;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Rolo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Envelope;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\EncomendaInterface;
 
 abstract class Encomenda implements EncomendaInterface
@@ -33,6 +34,9 @@ abstract class Encomenda implements EncomendaInterface
 
             case self::ROLO:
                 return new Rolo();
+
+            case self::ENVELOPE:
+                return new Envelope();
         }
     }
 

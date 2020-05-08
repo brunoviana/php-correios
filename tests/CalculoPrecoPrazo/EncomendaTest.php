@@ -6,6 +6,7 @@ use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Rolo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Envelope;
 
 class EncomendaTest extends TestCase
 {
@@ -21,6 +22,13 @@ class EncomendaTest extends TestCase
         $encomenda = Encomenda::nova(Encomenda::ROLO);
 
         $this->assertInstanceOf(Rolo::class, $encomenda);
+    }
+
+    public function test_Deve_Retornar_Instancia_Envelope_Corretamente()
+    {
+        $encomenda = Encomenda::nova(Encomenda::ENVELOPE);
+
+        $this->assertInstanceOf(Envelope::class, $encomenda);
     }
 
     public function test_Deve_Falhar_Com_Formato_Invalido()
