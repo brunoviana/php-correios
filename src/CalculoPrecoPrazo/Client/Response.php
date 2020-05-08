@@ -65,7 +65,7 @@ class Response
         if (is_array($this->dados['EntregaDomiciliar'])) {
             return '';
         }
-        
+
         return $this->dados['EntregaDomiciliar'];
     }
 
@@ -75,7 +75,7 @@ class Response
         if (is_array($this->dados['EntregaSabado'])) {
             return '';
         }
-        
+
         return $this->dados['EntregaSabado'];
     }
 
@@ -88,12 +88,12 @@ class Response
 
         return $this->dados['obsFim'];
     }
-    
+
     public function erro()
     {
         return $this->dados['Erro'];
     }
-    
+
     public function mensagemErro()
     {
         // Isso pode acontecer na conversão do retorno para array

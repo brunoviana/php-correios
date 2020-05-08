@@ -7,11 +7,11 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 class Caixa extends Encomenda
 {
     const COMPRIMENTO_MINIMO = 16;
-    
+
     const ALTURA_MINIMA = 2;
 
     const LARGURA_MINIMA = 11;
-    
+
     private $raizCubicaTotal = 0;
 
     private $usaRaizCubica;
@@ -62,7 +62,7 @@ class Caixa extends Encomenda
     {
         $centimentroCubico = ($item->altura() * $item->largura() * $item->comprimento()) * $item->quantidade();
 
-        return round(pow($centimentroCubico, 1/3), 2);
+        return round(pow($centimentroCubico, 1 / 3), 2);
     }
 
     public function comprimento()
@@ -120,7 +120,7 @@ class Caixa extends Encomenda
     }
 
     /**
-     * Os Correios não usa diâmetro nesse calculo, portanto deve ser sempre zero;
+     * Os Correios não usa diâmetro nesse calculo, portanto deve ser sempre zero;.
      */
     public function diametro()
     {

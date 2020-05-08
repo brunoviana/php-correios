@@ -8,9 +8,9 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorService;
 class CalculoPrecoPrazo
 {
     const CAIXA = Encomenda::CAIXA;
-    
+
     const ROLO = Encomenda::ROLO;
-    
+
     const ENVELOPE = Encomenda::ENVELOPE;
 
     public static function calculador($dados = [])

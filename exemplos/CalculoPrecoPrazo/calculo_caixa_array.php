@@ -6,7 +6,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo;
 
 $calculador = CalculoPrecoPrazo::calculador([
     'servicos' => [
-        '41106'
+        '41106',
     ],
     'itens' => [
         [
@@ -15,7 +15,7 @@ $calculador = CalculoPrecoPrazo::calculador([
             'comprimento' => 31,
             'altura' => 27,
             'largura' => 31,
-        ]
+        ],
     ],
     'usuario' => '',
     'senha' => '',
@@ -33,8 +33,8 @@ echo '<pre>';
 
 // Retorna um array onde cada índice é o resultado de um serviço consultado
 foreach ($responses as $response) {
-    if (!$response->sucesso()) {
-        echo "<p>Falha ao consultar os Correios. Status Code: " . $response->codigoHttp() . "</p>";
+    if (! $response->sucesso()) {
+        echo '<p>Falha ao consultar os Correios. Status Code: ' . $response->codigoHttp() . '</p>';
         continue;
     }
 

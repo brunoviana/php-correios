@@ -3,9 +3,9 @@
 namespace BrunoViana\Correios\CalculoPrecoPrazo;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\ClientInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\AdapterInterface;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\ClientInterface;
 
 class Client implements ClientInterface
 {
@@ -20,7 +20,7 @@ class Client implements ClientInterface
     {
         $this->clientAdapter = $clientAdapter;
     }
-    
+
     protected function montaParametros($request, $servico)
     {
         return [
@@ -38,7 +38,7 @@ class Client implements ClientInterface
             'sCdMaoPropria' => $request->maoPropria(),
             'nVlValorDeclarado' => $request->valorDeclarado(),
             'sCdAvisoRecebimento' => $request->avisoRecebimento(),
-            'StrRetorno' => 'XML'
+            'StrRetorno' => 'XML',
         ];
     }
 
@@ -46,7 +46,7 @@ class Client implements ClientInterface
     {
         $responses = array_map(function ($servico) use ($request) {
             $parametros = $this->montaParametros($request, $servico);
-            
+
             return $this->clientAdapter->enviar($request->url(), $parametros);
         }, $request->servicos());
 

@@ -23,14 +23,14 @@ abstract class Encomenda implements EncomendaInterface
 
     public static function nova($formato = 0)
     {
-        if (!in_array($formato, self::formatosValidos())) {
+        if (! in_array($formato, self::formatosValidos())) {
             throw new \RuntimeException('Formato de encomenda passado não é válido: ' . $formato);
         }
 
         switch ($formato) {
             case self::CAIXA:
                 return new Caixa();
-            
+
             case self::ROLO:
                 return new Rolo();
         }
@@ -41,7 +41,7 @@ abstract class Encomenda implements EncomendaInterface
         return [
             self::CAIXA,
             self::ROLO,
-            self::ENVELOPE
+            self::ENVELOPE,
         ];
     }
 
@@ -61,7 +61,7 @@ abstract class Encomenda implements EncomendaInterface
             $largura,
             $diametro
         );
-        
+
         $this->itens[] = $item;
         $this->pesoTotal += $this->calculaPeso($item);
 
@@ -82,12 +82,12 @@ abstract class Encomenda implements EncomendaInterface
     {
         return $this->pesoTotal > self::PESO_MINIMO ? $this->pesoTotal : self::PESO_MINIMO;
     }
-    
+
     abstract public function altura();
-    
+
     abstract public function largura();
-    
+
     abstract public function comprimento();
-    
+
     abstract public function diametro();
 }

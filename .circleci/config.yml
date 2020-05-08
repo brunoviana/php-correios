@@ -29,7 +29,7 @@ jobs:
           command: composer test -- --coverage-text
       - run:
           name: Checando escrita de código
-          command: composer check-style
+          command: composer check-cs
       - store_artifacts:
           path: build/coverage
           destination: coverage
@@ -59,7 +59,7 @@ jobs:
           command: composer test -- --coverage-text
       - run:
           name: Checando escrita de código
-          command: composer check-style
+          command: composer check-cs
       - store_artifacts:
           path: build/coverage
           destination: coverage
@@ -89,7 +89,7 @@ jobs:
           command: composer test -- --coverage-text
       - run:
           name: Checando escrita de código
-          command: composer check-style
+          command: composer check-cs
       - run:
           name: Subindo relatório de cobertura de código
           command: |

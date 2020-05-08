@@ -12,7 +12,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroNaoInformadoExcept
 class CalculadorService
 {
     protected $client;
-    
+
     protected $encomenda;
 
     protected $dados = [
@@ -33,13 +33,13 @@ class CalculadorService
         // Encomenda só é instanciado depois pois não sei se o formato já foi definido em $dados
         return new self(Client::novo(), null, $dados);
     }
-    
+
     public function __construct(ClientInterface $client, EncomendaInterface $encomenda = null, array $dadosRequest = [])
     {
         $this->client = $client;
-        
+
         $this->encomenda = $encomenda;
-        
+
         $this->iniciaDados($dadosRequest);
     }
 
@@ -54,8 +54,8 @@ class CalculadorService
 
     protected function encomenda()
     {
-        if (!$this->encomenda) {
-            if (!isset($this->dados['formato']) || empty($this->dados['formato'])) {
+        if (! $this->encomenda) {
+            if (! isset($this->dados['formato']) || empty($this->dados['formato'])) {
                 throw new ParametroNaoInformadoException('formato');
             }
 

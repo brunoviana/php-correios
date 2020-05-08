@@ -18,12 +18,12 @@ interface EncomendaInterface
     public function itens() : array;
 
     public function peso();
-    
+
     public function altura();
-    
+
     public function largura();
-    
+
     public function comprimento();
-    
+
     public function diametro();
 }
