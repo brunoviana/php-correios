@@ -24,4 +24,10 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run test suite
-      run: composer test
+      run: composer test -- --coverage-text
+    
+    - name: Checando escrita de código
+      run: composer check-style
+
+    - name: Subindo relatório de cobertura de código
+      run: bash <(curl -s https://codecov.io/bash) -cF php
