@@ -71,7 +71,7 @@ class CalculadorService
                 isset($item['comprimento']) ? $item['comprimento'] : 0,
                 isset($item['altura']) ? $item['altura'] : 0,
                 isset($item['largura']) ? $item['largura'] : 0,
-                isset($item['diametro']) ? $item['diametro'] : 0,
+                isset($item['diametro']) ? $item['diametro'] : 0
             );
         }
 
