@@ -68,10 +68,10 @@ class CalculadorService
             $this->encomenda->item(
                 $item['quantidade'],
                 $item['peso'],
-                $item['comprimento'] ?? 0,
-                $item['altura'] ?? 0,
-                $item['largura'] ?? 0,
-                $item['diametro'] ?? 0,
+                isset($item['comprimento']) ? $item['comprimento'] : 0,
+                isset($item['altura']) ? $item['altura'] : 0,
+                isset($item['largura']) ? $item['largura'] : 0,
+                isset($item['diametro']) ? $item['diametro'] : 0,
             );
         }
 

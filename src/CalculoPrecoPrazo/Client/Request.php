@@ -24,12 +24,12 @@ class Request
 
     public function usuario()
     {
-        return $this->dados['usuario'] ?? '';
+        return $this->dados['usuario'] ? $this->dados['usuario'] : '';
     }
 
     public function senha()
     {
-        return $this->dados['senha'] ?? '';
+        return $this->dados['senha'] ? $this->dados['senha'] : '';
     }
 
     public function servicos()
@@ -87,12 +87,12 @@ class Request
             return $this->dados['mao_propria'] === 0 ? 'N' : 'S';
         }
         
-        return $this->dados['mao_propria'] ?? 'N';
+        return isset($this->dados['mao_propria']) ? $this->dados['mao_propria'] : 'N';
     }
 
     public function valorDeclarado()
     {
-        return $this->dados['valor_declarado'] ?? 0;
+        return isset($this->dados['valor_declarado']) ? $this->dados['valor_declarado'] : 0;
     }
 
     public function avisoRecebimento()
@@ -105,7 +105,7 @@ class Request
             return $this->dados['aviso_recebimento'] === 0 ? 'N' : 'S';
         }
 
-        return $this->dados['aviso_recebimento'] ?? 'N';
+        return isset($this->dados['aviso_recebimento']) ? $this->dados['aviso_recebimento'] : 'N';
     }
 
     private function trataCep($cep)
