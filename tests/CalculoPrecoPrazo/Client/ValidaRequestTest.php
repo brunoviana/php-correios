@@ -3,10 +3,9 @@
 namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Client;
 
 use BrunoViana\Correios\Tests\TestCase;
-use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\ValidaRequest;
-use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroNaoInformadoException;
 use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroInvalidoException;
+use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroNaoInformadoException;
 
 class ValidaRequestTest extends TestCase
 {
@@ -15,7 +14,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "servicos"');
 
-        (new ValidaRequest)->validar([]);
+        (new ValidaRequest())->validar([]);
     }
 
     public function test_Deve_Validar_Origem_Do_Request()
@@ -23,7 +22,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "origem"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
         ]);
     }
@@ -33,7 +32,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "destino"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
         ]);
@@ -44,7 +43,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "formato"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -56,7 +55,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "peso"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -69,7 +68,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "comprimento"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -83,7 +82,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "altura"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -98,7 +97,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "largura"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -114,7 +113,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroNaoInformadoException::class);
         $this->expectExceptionMessage('Parâmetro obrigatório não informado: "diametro"');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -131,7 +130,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroInvalidoException::class);
         $this->expectExceptionMessage('Parâmetro passado não é válido: "mao_propria" (o valor "Q" foi informado)');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',
@@ -150,7 +149,7 @@ class ValidaRequestTest extends TestCase
         $this->expectException(ParametroInvalidoException::class);
         $this->expectExceptionMessage('Parâmetro passado não é válido: "aviso_recebimento" (o valor "Q" foi informado)');
 
-        (new ValidaRequest)->validar([
+        (new ValidaRequest())->validar([
             'servicos' => ['41106'],
             'origem' => '60842-130',
             'destino' => '22775-051',

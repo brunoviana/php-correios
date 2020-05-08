@@ -3,7 +3,6 @@
 namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Encomenda;
 
 use BrunoViana\Correios\Tests\TestCase;
-use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Item;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Rolo;
 
 class RoloTest extends TestCase

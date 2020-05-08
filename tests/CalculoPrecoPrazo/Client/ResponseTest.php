@@ -18,7 +18,7 @@ class ResponseTest extends TestCase
             $response->codigo()
         );
     }
-    
+
     public function test_Deve_Retornar_Valor_Com_Sucesso()
     {
         $response = new Response([
@@ -32,7 +32,7 @@ class ResponseTest extends TestCase
             $response->valor()
         );
     }
-    
+
     public function test_Deve_Retornar_Prazo_Entrega_Com_Sucesso()
     {
         $response = new Response([
@@ -58,7 +58,7 @@ class ResponseTest extends TestCase
             $response->valorSemAdicionais()
         );
     }
-    
+
     public function test_Deve_Retornar_Valor_Mao_Propria_Com_Sucesso()
     {
         $response = new Response([
@@ -86,7 +86,7 @@ class ResponseTest extends TestCase
             $response->valorAvisoRecebimento()
         );
     }
-    
+
     public function test_Deve_Retornar_Valor_Do_Valor_Declarado_Com_Sucesso()
     {
         $response = new Response([
@@ -131,7 +131,7 @@ class ResponseTest extends TestCase
             $response3->entregaDomiciliar()
         );
     }
-    
+
     public function test_Deve_Retornar_Entrega_Sabado_Com_Sucesso()
     {
         $response = new Response([
@@ -184,7 +184,7 @@ class ResponseTest extends TestCase
             $response3->observacao()
         );
     }
-    
+
     public function test_Deve_Retornar_Erro_Com_Sucesso()
     {
         $response = new Response([
@@ -196,7 +196,7 @@ class ResponseTest extends TestCase
             $response->erro()
         );
     }
-    
+
     public function test_Deve_Retornar_Mensagem_De_Erro_Com_Sucesso()
     {
         $response = new Response([

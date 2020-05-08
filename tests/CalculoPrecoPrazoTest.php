@@ -4,7 +4,6 @@ namespace BrunoViana\Correios;
 
 use BrunoViana\Correios\Tests\TestCase;
 
-use BrunoViana\Correios\CalculoPrecoPrazo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorService;
 
