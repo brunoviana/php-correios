@@ -14,6 +14,11 @@ class Response
         $this->codigoHttp = $codigoHttp;
     }
 
+    public function sucesso()
+    {
+        return $this->codigoHttp() == 200;
+    }
+
     public function codigoHttp()
     {
         return $this->codigoHttp;
@@ -26,32 +31,32 @@ class Response
 
     public function valor()
     {
-        return $this->formataValor($this->dados['Valor']);
+        return (float) $this->formataValor($this->dados['Valor']);
     }
 
     public function valorSemAdicionais()
     {
-        return $this->formataValor($this->dados['ValorSemAdicionais']);
+        return (float) $this->formataValor($this->dados['ValorSemAdicionais']);
     }
 
     public function prazoEntrega()
     {
-        return $this->dados['PrazoEntrega'];
+        return (int) $this->dados['PrazoEntrega'];
     }
 
     public function valorMaoPropria()
     {
-        return $this->formataValor($this->dados['ValorMaoPropria']);
+        return (float) $this->formataValor($this->dados['ValorMaoPropria']);
     }
 
     public function valorAvisoRecebimento()
     {
-        return $this->formataValor($this->dados['ValorAvisoRecebimento']);
+        return (float) $this->formataValor($this->dados['ValorAvisoRecebimento']);
     }
 
     public function valorValorDeclarado()
     {
-        return $this->formataValor($this->dados['ValorValorDeclarado']);
+        return (float) $this->formataValor($this->dados['ValorValorDeclarado']);
     }
 
     public function entregaDomiciliar()
@@ -104,5 +109,24 @@ class Response
         $valorSoDigitos = preg_replace('/\D/', '', $valor);
 
         return (float) $valorSoDigitos / 100;
+    }
+
+    public function emArray()
+    {
+        return [
+            'codigo' => $this->codigo(),
+            'valor' => $this->valor(),
+            'valor_sem_adicional' => $this->valorSemAdicionais(),
+            'prazo_entrega' => $this->prazoEntrega(),
+            'valor_mao_propria' => $this->valorMaoPropria(),
+            'valor_aviso_recebimento' => $this->valorAvisoRecebimento(),
+            'valor_valor_declarado' => $this->valorValorDeclarado(),
+            'entrega_domiciliar' => $this->entregaDomiciliar(),
+            'entrega_sabado' => $this->entregaSabado(),
+            'observacao' => $this->observacao(),
+            'codigo_erro' => $this->erro(),
+            'mensagem_erro' => $this->mensagemErro(),
+            'codigo_http' => $this->codigoHttp(),
+        ];
     }
 }
