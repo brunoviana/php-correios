@@ -3,10 +3,11 @@
 require '../../vendor/autoload.php';
 
 use BrunoViana\Correios\CalculoPrecoPrazo;
+use BrunoViana\Correios\CalculoPrecoPrazo\Servico;
 
 $calculador = CalculoPrecoPrazo::calculador([
     'servicos' => [
-        '41106',
+        Servico::PAC_41106,
     ],
     'itens' => [
         [
