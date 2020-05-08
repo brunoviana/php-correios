@@ -3,6 +3,7 @@
 namespace BrunoViana\Correios\CalculoPrecoPrazo;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Item;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Rolo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\EncomendaInterface;
 
@@ -14,7 +15,11 @@ abstract class Encomenda implements EncomendaInterface
 
     const ENVELOPE = 3;
 
+    const PESO_MINIMO = 0.3;
+
     protected $itens = [];
+
+    protected $pesoTotal = 0;
 
     public static function nova($formato = 0)
     {
@@ -25,6 +30,9 @@ abstract class Encomenda implements EncomendaInterface
         switch ($formato) {
             case self::CAIXA:
                 return new Caixa();
+            
+            case self::ROLO:
+                return new Rolo();
         }
     }
 
@@ -55,6 +63,7 @@ abstract class Encomenda implements EncomendaInterface
         );
         
         $this->itens[] = $item;
+        $this->pesoTotal += $this->calculaPeso($item);
 
         return $item;
     }
@@ -64,7 +73,15 @@ abstract class Encomenda implements EncomendaInterface
         return $this->itens;
     }
 
-    abstract public function peso();
+    protected function calculaPeso(Item $item)
+    {
+        return $item->peso() * $item->quantidade();
+    }
+
+    public function peso()
+    {
+        return $this->pesoTotal > self::PESO_MINIMO ? $this->pesoTotal : self::PESO_MINIMO;
+    }
     
     abstract public function altura();
     

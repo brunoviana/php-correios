@@ -6,15 +6,11 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 
 class Caixa extends Encomenda
 {
-    const PESO_MINIMO = 0.3;
-
     const COMPRIMENTO_MINIMO = 16;
     
     const ALTURA_MINIMA = 2;
 
     const LARGURA_MINIMA = 11;
-
-    private $pesoTotal = 0;
     
     private $raizCubicaTotal = 0;
 
@@ -57,7 +53,6 @@ class Caixa extends Encomenda
             $diametro
         );
 
-        $this->pesoTotal += $this->calculaPeso($item);
         $this->raizCubicaTotal += $this->calculaRaizCubica($item);
 
         return $item;
@@ -68,16 +63,6 @@ class Caixa extends Encomenda
         $centimentroCubico = ($item->altura() * $item->largura() * $item->comprimento()) * $item->quantidade();
 
         return round(pow($centimentroCubico, 1/3), 2);
-    }
-
-    protected function calculaPeso(Item $item)
-    {
-        return $item->peso() * $item->quantidade();
-    }
-
-    public function peso()
-    {
-        return $this->pesoTotal > self::PESO_MINIMO ? $this->pesoTotal : self::PESO_MINIMO;
     }
 
     public function comprimento()

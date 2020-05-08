@@ -8,7 +8,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
 
 class CaixaTest extends TestCase
 {
-    public function test_Encomenda_Deve_Retornar_Peso_Corretamente()
+    public function test_Caixa_Deve_Retornar_Peso_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 17, 15, 12, 0);
@@ -27,7 +27,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(1, $caixa3->peso());
     }
 
-    public function test_Encomenda_Deve_Retornar_Peso_Minimo_Corretamente()
+    public function test_Caixa_Deve_Retornar_Peso_Minimo_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.1, 1, 1, 1, 0);
@@ -35,7 +35,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(0.3, $caixa->peso());
     }
 
-    public function test_Encomenda_Deve_Retornar_Comprimento_Cubico_Corretamente()
+    public function test_Caixa_Deve_Retornar_Comprimento_Cubico_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 16, 32, 16, 0);
@@ -54,7 +54,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(25.4, $caixa3->comprimento());
     }
 
-    public function test_Encomenda_Deve_Retornar_Comprimento_Somado_Corretamente()
+    public function test_Caixa_Deve_Retornar_Comprimento_Somado_Corretamente()
     {
         $caixa = new Caixa(false);
         $caixa->item(1, 0.500, 16, 32, 16, 0);
@@ -73,7 +73,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(16, $caixa3->comprimento());
     }
 
-    public function test_Encomenda_Deve_Retornar_Comprimento_Minimo_Corretamente()
+    public function test_Caixa_Deve_Retornar_Comprimento_Minimo_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 1, 1, 1, 0);
@@ -81,7 +81,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(16, $caixa->comprimento());
     }
 
-    public function test_Encomenda_Deve_Retornar_Altura_Cubica_Corretamente()
+    public function test_Caixa_Deve_Retornar_Altura_Cubica_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 16, 32, 16, 0);
@@ -100,7 +100,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(25.4, $caixa3->altura());
     }
 
-    public function test_Encomenda_Deve_Retornar_Altura_Somada_Corretamente()
+    public function test_Caixa_Deve_Retornar_Altura_Somada_Corretamente()
     {
         $caixa = new Caixa(false);
         $caixa->item(1, 0.500, 16, 32, 16, 0);
@@ -119,7 +119,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(64, $caixa3->altura());
     }
 
-    public function test_Encomenda_Deve_Retornar_Altura_Minima_Corretamente()
+    public function test_Caixa_Deve_Retornar_Altura_Minima_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 1, 1, 1, 0);
@@ -127,7 +127,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(2, $caixa->altura());
     }
 
-    public function test_Encomenda_Deve_Retornar_Largura_Cubica_Corretamente()
+    public function test_Caixa_Deve_Retornar_Largura_Cubica_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 16, 32, 16, 0);
@@ -146,7 +146,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(25.4, $caixa3->largura());
     }
 
-    public function test_Encomenda_Deve_Retornar_Largura_Somada_Corretamente()
+    public function test_Caixa_Deve_Retornar_Largura_Somada_Corretamente()
     {
         $caixa = new Caixa(false);
         $caixa->item(1, 0.500, 16, 32, 16, 0);
@@ -165,7 +165,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(16, $caixa3->largura());
     }
 
-    public function test_Encomenda_Deve_Retornar_Largura_Minima_Corretamente()
+    public function test_Caixa_Deve_Retornar_Largura_Minima_Corretamente()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 1, 1, 1, 0);
@@ -173,7 +173,7 @@ class CaixaTest extends TestCase
         $this->assertEquals(11, $caixa->largura());
     }
 
-    public function test_Encomenda_Deve_Retornar_Diametro_Sempre_Zero()
+    public function test_Caixa_Deve_Retornar_Diametro_Sempre_Zero()
     {
         $caixa = new Caixa();
         $caixa->item(1, 0.500, 1, 1, 1, 4);

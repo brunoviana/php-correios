@@ -11,18 +11,18 @@ $calculador->servicos([
             ->itens([
                 [
                     'quantidade' => 1,
-                    'peso' => 0.71,
+                    'peso' => 1,
                     'comprimento' => 31,
-                    'altura' => 27,
-                    'largura' => 31,
-                    'diametro' => 0,
+                    'altura' => 0,
+                    'largura' => 0,
+                    'diametro' => 15,
                 ]
             ])
             ->usuario('')
             ->senha('')
             ->origem('60842-130')
             ->destino('22775-051')
-            ->formato(CalculoPrecoPrazo::CAIXA)
+            ->formato(CalculoPrecoPrazo::ROLO)
             ->maoPropria('N')
             ->valorDeclarado(0)
             ->avisoRecebimento('N');
