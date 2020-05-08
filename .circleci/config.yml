@@ -26,10 +26,7 @@ jobs:
             - vendor
       - run:
           name: Realizando testes
-          command: composer test -- --coverage-text
-      - store_artifacts:
-          path: build/coverage
-          destination: coverage
+          command: composer test
 
   php-7.3:
     docker:
@@ -53,10 +50,7 @@ jobs:
             - vendor
       - run:
           name: Realizando testes
-          command: composer test -- --coverage-text
-      - store_artifacts:
-          path: build/coverage
-          destination: coverage
+          command: composer test
 
   php-7.4:
     docker:
@@ -79,16 +73,14 @@ jobs:
           paths:
             - vendor
       - run:
+          name: Validando padrão PSR-2
+          command: composer check-psr2
+      - run:
+          name: Validando padrão de código do projeto
+          command: composer check-cs
+      - run:
           name: Realizando testes
           command: composer test -- --coverage-text
-      - run:
-          name: Ajustando escrita de código
-          command: |
-            IFS='
-            '
-            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "HEAD~..HEAD")
-            if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then EXTRA_ARGS=$(printf -- '--path-mode=intersection\n--\n%s' "${CHANGED_FILES}"); else EXTRA_ARGS=''; fi
-            vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --stop-on-violation --using-cache=no ${EXTRA_ARGS}
       - run:
           name: Subindo relatório de cobertura de código
           command: |
