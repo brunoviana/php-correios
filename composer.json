@@ -30,6 +30,8 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --verbose --colors=always",
-        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src"
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src",
+        "brew-php7.2": "brew unlink php && brew link php@7.2 --force",
+        "brew-php7.4": "brew unlink php@7.2 && brew link php"
     }
 }
