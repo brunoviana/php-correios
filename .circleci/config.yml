@@ -26,10 +26,13 @@ jobs:
             - vendor
       - run:
           name: Realizando testes
-          command: composer test
+          command: composer test -- --text-coverage
       - run:
           name: Checando escrita de código
           command: composer check-style
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
 
   php-7.3:
     docker:
@@ -53,10 +56,13 @@ jobs:
             - vendor
       - run:
           name: Realizando testes
-          command: composer test
+          command: composer test -- --text-coverage
       - run:
           name: Checando escrita de código
           command: composer check-style
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
 
   php-7.4:
     docker:
@@ -80,10 +86,13 @@ jobs:
             - vendor
       - run:
           name: Realizando testes
-          command: composer test
+          command: composer test -- --text-coverage
       - run:
           name: Checando escrita de código
           command: composer check-style
+      - store_artifacts:
+          path: build/coverage
+          destination: coverage
 
 workflows:
   version: 2
