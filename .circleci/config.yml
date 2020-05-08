@@ -90,6 +90,12 @@ jobs:
       - run:
           name: Checando escrita de código
           command: composer check-style
+      - run:
+          name: Subindo relatório de cobertura de código
+          command: |
+            curl -s https://codecov.io/bash > .codecov
+            chmod +x .codecov
+            ./.codecov
       - store_artifacts:
           path: build/coverage
           destination: coverage
