@@ -4,8 +4,8 @@ namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\Curl;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\AdapterInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
 
 class CurlAdapter implements AdapterInterface
 {
@@ -32,7 +32,7 @@ class CurlAdapter implements AdapterInterface
 
         $this->http->reset();
 
-        $this->http->setOption(CURLOPT_URL, $url.'?'.$params);
+        $this->http->setOption(CURLOPT_URL, $url . '?' . $params);
         $this->http->setOption(CURLOPT_RETURNTRANSFER, 1);
         $this->http->setOption(CURLOPT_TIMEOUT, 10);
 

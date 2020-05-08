@@ -2,8 +2,6 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Client;
 
-use BrunoViana\Correios\CalculoPrecoPrazo\Client\ValidaRequest;
-
 class Request
 {
     private $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
@@ -86,7 +84,7 @@ class Request
         if (isset($this->dados['mao_propria']) && is_int($this->dados['mao_propria'])) {
             return $this->dados['mao_propria'] === 0 ? 'N' : 'S';
         }
-        
+
         return isset($this->dados['mao_propria']) ? $this->dados['mao_propria'] : 'N';
     }
 
@@ -110,6 +108,6 @@ class Request
 
     private function trataCep($cep)
     {
-        return sprintf("%08s", preg_replace('/\D/', '', $cep));
+        return sprintf('%08s', preg_replace('/\D/', '', $cep));
     }
 }

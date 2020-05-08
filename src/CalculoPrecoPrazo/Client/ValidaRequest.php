@@ -2,8 +2,8 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Client;
 
-use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroNaoInformadoException;
 use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroInvalidoException;
+use BrunoViana\Correios\CalculoPrecoPrazo\Exceptions\ParametroNaoInformadoException;
 
 class ValidaRequest
 {
@@ -22,7 +22,7 @@ class ValidaRequest
     public function validar($dados)
     {
         foreach ($this->camposObrigatorios as $campo) {
-            if (!isset($dados[$campo]) || (empty($dados[$campo]) && $dados[$campo] !== 0)) {
+            if (! isset($dados[$campo]) || (empty($dados[$campo]) && $dados[$campo] !== 0)) {
                 throw new ParametroNaoInformadoException($campo);
             }
         }
@@ -43,7 +43,7 @@ class ValidaRequest
 
                 throw new ParametroInvalidoException([
                     $campo,
-                    $dados[$campo]
+                    $dados[$campo],
                 ]);
             }
         }

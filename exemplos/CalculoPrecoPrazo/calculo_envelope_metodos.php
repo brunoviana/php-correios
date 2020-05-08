@@ -20,7 +20,7 @@ $calculador->servicos([
             ->senha('')
             ->origem('60842-130')
             ->destino('22775-051')
-            ->formato(CalculoPrecoPrazo::ROLO)
+            ->formato(CalculoPrecoPrazo::ENVELOPE)
             ->maoPropria('N')
             ->valorDeclarado(0)
             ->avisoRecebimento('N');
