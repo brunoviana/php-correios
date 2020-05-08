@@ -114,10 +114,7 @@ class Servico
             "nome_completo" => "Sedex Reverso",
             "nome" => "Sedex"
         ],
-        self::SEDEX_PAGAMENTO_NA_ENTREGA_40630 => [
-            "codigo" => self::SEDEX_PAGAMENTO_NA_ENTREGA_40630,
-            "nome_completo" => "Sedex Pagamento na Entrega",
-            "nome" => "Sedex"
+        self::SEDEX_PAGAMENTO_NA_ENTREGA_40630 => [ "codigo" => self::SEDEX_PAGAMENTO_NA_ENTREGA_40630, "nome_completo" => "Sedex Pagamento na Entrega", "nome" => "Sedex"
         ],
         self::CARTA_COMERCIAL_10065 => [
             "codigo" => self::CARTA_COMERCIAL_10065,
