@@ -61,6 +61,15 @@ jobs:
       - store_artifacts:
           path: build/coverage
           destination: coverage
+
+  workflows:
+    version: 2
+    tests:
+      jobs:
+        - php-7.0
+        - php-7.1
+        - php-7.2
+
   # build:
     # docker:
     #   # Specify the version you desire here
