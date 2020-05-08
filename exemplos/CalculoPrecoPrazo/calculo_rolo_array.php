@@ -13,8 +13,6 @@ $calculador = CalculoPrecoPrazo::calculador([
             'quantidade' => 1,
             'peso' => 1,
             'comprimento' => 31,
-            'altura' => 0,
-            'largura' => 0,
             'diametro' => 15,
         ]
     ],

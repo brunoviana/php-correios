@@ -15,7 +15,6 @@ $calculador->servicos([
                     'comprimento' => 31,
                     'altura' => 27,
                     'largura' => 31,
-                    'diametro' => 0,
                 ]
             ])
             ->usuario('')
