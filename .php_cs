@@ -1,5 +1,9 @@
 <?php
 
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->in(__DIR__);
+
 return PhpCsFixer\Config::create()
     ->setRules([
         '@PSR2' => true,
@@ -23,4 +27,5 @@ return PhpCsFixer\Config::create()
         'ternary_operator_spaces' => true,
     ])
     // ->setIndent("\t")
-    ->setLineEnding("\n");
+    ->setLineEnding("\n")
+    ->setFinder($finder);
