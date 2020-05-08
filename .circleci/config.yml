@@ -26,7 +26,7 @@ jobs:
           command: composer install --no-progress --no-interaction
       - run:
           name: Realizando testes
-          command: composer test
+          command: composer test -- --coverage-text
       - run:
           name: Checando escrita de código
           command: composer check-style
@@ -55,7 +55,7 @@ jobs:
           command: composer install --no-progress --no-interaction
       - run:
           name: Realizando testes
-          command: composer test
+          command: composer test -- --coverage-text
       - run:
           name: Checando escrita de código
           command: composer check-style
@@ -84,7 +84,7 @@ jobs:
           command: composer install --no-progress --no-interaction
       - run:
           name: Realizando testes
-          command: composer test
+          command: composer test -- --coverage-text
       - run:
           name: Checando escrita de código
           command: composer check-style
