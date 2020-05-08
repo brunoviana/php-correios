@@ -17,13 +17,13 @@ class ClientTest extends TestCase
         $httpMock->method('execute')->willReturn(
             $this->xmlRetornoCorreios()
         );
-        
+
         $httpMock->method('getInfo')
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
         $curlAdapter = new CurlAdapter($httpMock);
-        
+
         $request = new Request([
             'servicos' => [
                 '04014'
@@ -49,7 +49,7 @@ class ClientTest extends TestCase
         $servico = $respostas[0];
 
         $this->assertInstanceOf(Response::class, $servico);
-        
+
         $this->assertEquals('04014', $servico->codigo());
         $this->assertEquals(10.00, $servico->valor());
         $this->assertEquals(3, $servico->prazoEntrega());

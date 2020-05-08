@@ -3,8 +3,6 @@
 namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Client;
 
 use BrunoViana\Correios\Tests\TestCase;
-use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
-use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
 
@@ -24,7 +22,6 @@ class CurlAdapterTest extends TestCase
                         $this->equalTo($this->requestUrl())
                     );
 
-        
         $httpMock->method('getInfo')
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
@@ -34,7 +31,7 @@ class CurlAdapterTest extends TestCase
             'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx',
             $this->parametros()
         );
-        
+
         $this->assertEquals('04014', $response->codigo());
         $this->assertEquals(10.00, $response->valor());
         $this->assertEquals(3, $response->prazoEntrega());
@@ -91,21 +88,21 @@ class CurlAdapterTest extends TestCase
     private function requestUrl()
     {
         return 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?'
-                .'nCdEmpresa=&'
-                .'nCdServico=04014&'
-                .'sDsSenha=&'
-                .'sCepOrigem=30170-010&'
-                .'sCepDestino=04538-132&'
-                .'nVlPeso=0.15&'
-                .'nCdFormato=2&'
-                .'nVlComprimento=17&'
-                .'nVlAltura=15&'
-                .'nVlLargura=12&'
-                .'nVlDiametro=4&'
-                .'sCdMaoPropria=N&'
-                .'nVlValorDeclarado=0&'
-                .'sCdAvisoRecebimento=N&'
-                .'StrRetorno=XML';
+                . 'nCdEmpresa=&'
+                . 'nCdServico=04014&'
+                . 'sDsSenha=&'
+                . 'sCepOrigem=30170-010&'
+                . 'sCepDestino=04538-132&'
+                . 'nVlPeso=0.15&'
+                . 'nCdFormato=2&'
+                . 'nVlComprimento=17&'
+                . 'nVlAltura=15&'
+                . 'nVlLargura=12&'
+                . 'nVlDiametro=4&'
+                . 'sCdMaoPropria=N&'
+                . 'nVlValorDeclarado=0&'
+                . 'sCdAvisoRecebimento=N&'
+                . 'StrRetorno=XML';
     }
 
     private function xmlRetornoCorreios()

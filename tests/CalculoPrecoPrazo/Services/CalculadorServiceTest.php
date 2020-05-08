@@ -4,7 +4,6 @@ namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Services;
 
 use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client;
-use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorService;
@@ -145,20 +144,20 @@ class CalculadorServiceTest extends TestCase
                         $this->equalTo(CURLOPT_URL),
                         $this->equalTo($this->requestUrl())
                     );
-        
+
         $httpMock->method('getInfo')
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
         $curlAdapter = new CurlAdapter($httpMock);
-        
+
         return new Client($curlAdapter);
     }
 
     private function assertServico($servico)
     {
         $this->assertInstanceOf(Response::class, $servico);
-        
+
         $this->assertEquals('41106', $servico->codigo());
         $this->assertEquals(31, $servico->valor());
         $this->assertEquals(15, $servico->prazoEntrega());
@@ -224,20 +223,20 @@ class CalculadorServiceTest extends TestCase
     private function requestUrl()
     {
         return 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?'
-                .'nCdServico=41106&'
-                .'nCdEmpresa=&'
-                .'sDsSenha=&'
-                .'sCepOrigem=60842130&'
-                .'sCepDestino=22775051&'
-                .'nVlPeso=0.71&'
-                .'nCdFormato=1&'
-                .'nVlComprimento=29.6&'
-                .'nVlAltura=29.6&'
-                .'nVlLargura=29.6&'
-                .'nVlDiametro=0&'
-                .'sCdMaoPropria=N&'
-                .'nVlValorDeclarado=0&'
-                .'sCdAvisoRecebimento=N&'
-                .'StrRetorno=XML';
+                . 'nCdServico=41106&'
+                . 'nCdEmpresa=&'
+                . 'sDsSenha=&'
+                . 'sCepOrigem=60842130&'
+                . 'sCepDestino=22775051&'
+                . 'nVlPeso=0.71&'
+                . 'nCdFormato=1&'
+                . 'nVlComprimento=29.6&'
+                . 'nVlAltura=29.6&'
+                . 'nVlLargura=29.6&'
+                . 'nVlDiametro=0&'
+                . 'sCdMaoPropria=N&'
+                . 'nVlValorDeclarado=0&'
+                . 'sCdAvisoRecebimento=N&'
+                . 'StrRetorno=XML';
     }
 }
