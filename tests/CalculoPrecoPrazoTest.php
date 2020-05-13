@@ -11,6 +11,13 @@ class CalculoPrecoPrazoTest extends TestCase
 {
     public function test_Deve_Retornar_Calculador_Corretamente()
     {
+        $precoPrazo = new CalculoPrecoPrazo();
+
+        $this->assertInstanceOf(CalculadorService::class, $precoPrazo->calculador());
+    }
+
+    public function test_Deve_Retornar_Calculador_Estaticamente()
+    {
         $this->assertInstanceOf(CalculadorService::class, CalculoPrecoPrazo::calculador());
     }
 
