@@ -13,7 +13,7 @@ class CalculoPrecoPrazo
 
     const ENVELOPE = Encomenda::ENVELOPE;
 
-    public static function calculador($dados = [])
+    public function calculador($dados = [])
     {
         return CalculadorService::novo($dados);
     }

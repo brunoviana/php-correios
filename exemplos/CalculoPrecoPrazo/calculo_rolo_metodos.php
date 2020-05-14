@@ -5,7 +5,7 @@ require '../../vendor/autoload.php';
 use BrunoViana\Correios\CalculoPrecoPrazo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Servico;
 
-$calculador = CalculoPrecoPrazo::calculador();
+$calculador = (new CalculoPrecoPrazo())->calculador();
 $calculador->servicos([
     Servico::PAC_41106,
 ])
