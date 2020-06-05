@@ -4,10 +4,10 @@ namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Service;
 
 use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoSeparado;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
-use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 
 class CalculadorTudoSeparadoTest extends TestCase
 {
@@ -136,7 +136,7 @@ class CalculadorTudoSeparadoTest extends TestCase
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
-        $curlAdapter = new CurlAdapter($httpMock, new ImprimeNaTelaLogger);
+        $curlAdapter = new CurlAdapter($httpMock, new ImprimeNaTelaLogger());
 
         return new Client($curlAdapter);
     }
@@ -155,9 +155,9 @@ class CalculadorTudoSeparadoTest extends TestCase
                 <ValorValorDeclarado>0,00</ValorValorDeclarado>
                 <EntregaDomiciliar>S</EntregaDomiciliar>
                 <EntregaSabado>N</EntregaSabado>
-                <obsFim></obsFim>
-                <Erro>0</Erro>
-                <MsgErro></MsgErro>
+                <obsFim>Sem obs</obsFim>
+                <Erro>001</Erro>
+                <MsgErro>Ocorreu um erro</MsgErro>
             </cServico>
         </Servicos>';
     }

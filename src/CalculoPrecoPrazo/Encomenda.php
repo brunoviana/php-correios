@@ -24,10 +24,6 @@ abstract class Encomenda
 
     public static function nova($formato = 0, $unicoItem = false) : EncomendaInterface
     {
-        if (! in_array($formato, self::formatosValidos())) {
-            throw new \RuntimeException('Formato de encomenda passado não é válido: ' . $formato);
-        }
-
         switch ($formato) {
             case self::CAIXA:
                 return $unicoItem ? new CalculoUnicoItem() : new CalculoRaizCubica();
@@ -38,14 +34,7 @@ abstract class Encomenda
             case self::ENVELOPE:
                 return new Envelope();
         }
-    }
 
-    private static function formatosValidos()
-    {
-        return [
-            self::CAIXA,
-            self::ROLO,
-            self::ENVELOPE,
-        ];
+        throw new \RuntimeException('Formato de encomenda passado não é válido: ' . $formato);
     }
 }

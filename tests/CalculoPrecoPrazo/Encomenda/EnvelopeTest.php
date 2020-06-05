@@ -103,4 +103,12 @@ class EnvelopeTest extends TestCase
 
         $this->assertEquals(0, $envelope->diametro());
     }
+
+    public function test_Rolo_Deve_Retornar_Itens_Corretamente()
+    {
+        $rolo = new Envelope();
+        $rolo->item(1, 0.500, 1, 1, 1, 0);
+
+        $this->assertCount(1, $rolo->itens());
+    }
 }

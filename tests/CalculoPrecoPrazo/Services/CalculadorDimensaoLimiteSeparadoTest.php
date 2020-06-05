@@ -4,10 +4,10 @@ namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Services;
 
 use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorDimensaoLimiteSeparado;
-use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 
 class CalculadorDimensaoLimiteSeparadoTest extends TestCase
 {
@@ -30,11 +30,10 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
      */
     public function test_Deve_Calcular_Caixa_Em_Uma_Encomendas_Acima_Do_Limite_Separadas(
         $arrayComItens,
-        $requestUrl,
         $expects,
         $responseEsperado
     ) {
-        $client = $this->client($requestUrl, $expects);
+        $client = $this->client($expects);
         $remessa = new CalculadorDimensaoLimiteSeparado($client);
 
         extract($this->dadosService);
@@ -82,7 +81,6 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                 [
                     [1, 0.71, 31, 27, 31, 0]
                 ],
-                $this->requestUrl(),
                 1,
                 [
                     'Valor' => 31,
@@ -94,7 +92,6 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                     [1, 0.71, 31, 27, 31, 0],
                     [1, 0.71, 31, 27, 31, 0]
                 ],
-                $this->requestUrl(),
                 1,
                 [
                     'Valor' => 31,
@@ -105,7 +102,6 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                 [
                     [2, 0.71, 31, 27, 31, 0]
                 ],
-                $this->requestUrl(),
                 1,
                 [
                     'Valor' => 31,
@@ -117,7 +113,6 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                     [1, 0.71, 71, 27, 31, 0],
                     [1, 0.71, 31, 27, 31, 0]
                 ],
-                $this->requestUrl(),
                 2,
                 [
                     'Valor' => 62,
@@ -130,7 +125,6 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                     [1, 0.71, 31, 27, 31, 0],
                     [1, 0.71, 31, 27, 31, 0]
                 ],
-                $this->requestUrl(),
                 2,
                 [
                     'Valor' => 62,
@@ -143,7 +137,6 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                     [1, 0.71, 80, 27, 31, 0],
                     [1, 0.71, 31, 27, 31, 0]
                 ],
-                $this->requestUrl(),
                 3,
                 [
                     'Valor' => 93,
@@ -153,7 +146,7 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
         ];
     }
 
-    private function client($requestUrl, $expects)
+    private function client($expects)
     {
         $httpMock = $this->createMock(HttpRequestInterface::class);
 
@@ -167,7 +160,7 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
-        $curlAdapter = new CurlAdapter($httpMock, new ImprimeNaTelaLogger);
+        $curlAdapter = new CurlAdapter($httpMock, new ImprimeNaTelaLogger());
 
         return new Client($curlAdapter);
     }
@@ -186,30 +179,10 @@ class CalculadorDimensaoLimiteSeparadoTest extends TestCase
                 <ValorValorDeclarado>0,00</ValorValorDeclarado>
                 <EntregaDomiciliar>S</EntregaDomiciliar>
                 <EntregaSabado>N</EntregaSabado>
-                <obsFim></obsFim>
-                <Erro>0</Erro>
-                <MsgErro></MsgErro>
+                <obsFim>Sem observacao</obsFim>
+                <Erro>001</Erro>
+                <MsgErro>Ocorreu um erro</MsgErro>
             </cServico>
         </Servicos>';
-    }
-
-    private function requestUrl()
-    {
-        return 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?'
-                . 'nCdServico=41106&'
-                . 'nCdEmpresa=&'
-                . 'sDsSenha=&'
-                . 'sCepOrigem=60842130&'
-                . 'sCepDestino=22775051&'
-                . 'nVlPeso=0.71&'
-                . 'nCdFormato=1&'
-                . 'nVlComprimento=31&'
-                . 'nVlAltura=27&'
-                . 'nVlLargura=31&'
-                . 'nVlDiametro=0&'
-                . 'sCdMaoPropria=N&'
-                . 'nVlValorDeclarado=0&'
-                . 'sCdAvisoRecebimento=N&'
-                . 'StrRetorno=XML';
     }
 }

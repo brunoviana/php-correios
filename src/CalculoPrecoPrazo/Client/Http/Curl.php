@@ -2,6 +2,17 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Http;
 
+/**
+ * Essa classe existe porque eu precisava testar o CurlAdapter
+ * e não tinha como fazer mock das funções do curl e validar
+ * se as chamadas estavam corretas.
+ *
+ * Pelo memso motivo eu estou ignorando essa classe no coverage
+ * já que as funções PHP que os métodos executam não podem ser
+ * mockados e passados no teste.
+ *
+ * @codeCoverageIgnore
+ */
 class Curl implements HttpRequestInterface
 {
     private $handle = null;
