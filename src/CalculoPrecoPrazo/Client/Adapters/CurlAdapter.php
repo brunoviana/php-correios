@@ -5,19 +5,23 @@ namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\Curl;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
+use Psr\Log\LoggerInterface;
 
 class CurlAdapter implements AdapterInterface
 {
     protected $http;
+    
+    protected $logger;
 
-    public static function novo()
+    public static function novo(LoggerInterface $logger)
     {
-        return new self(new Curl());
+        return new self(new Curl(), $logger);
     }
 
-    public function __construct(HttpRequestInterface $http)
+    public function __construct(HttpRequestInterface $http, LoggerInterface $logger)
     {
         $this->http = $http;
+        $this->logger = $logger;
     }
 
     public function enviar(string $url, array $parametros) : Response
@@ -34,15 +38,17 @@ class CurlAdapter implements AdapterInterface
         $this->http->setOption(CURLOPT_URL, $url . '?' . $params);
         $this->http->setOption(CURLOPT_RETURNTRANSFER, 1);
         $this->http->setOption(CURLOPT_TIMEOUT, 10);
+        
+        $this->logger->debug('Enviando requisição aos Correios', $parametros);
 
         $response = $this->http->execute(); 
-        
-        echo '<pre>';
-        echo $params;
-        echo htmlspecialchars($response);
-        echo '</pre>';
 
         $responseTransformado = $this->transformaResponse($response);
+
+        $this->logger->debug(
+            'Resposta dos Correios',
+            is_array($responseTransformado) ? $responseTransformado : []
+        );
 
         return new Response(
             $responseTransformado ? $responseTransformado['cServico'] : [],

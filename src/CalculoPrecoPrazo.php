@@ -7,6 +7,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorDimensaoLimiteSepar
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoJunto;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoSeparado;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 
 class CalculoPrecoPrazo
 {
@@ -29,10 +30,20 @@ class CalculoPrecoPrazo
     {
         $opcoesPadrao = [
             'limite_dimensao' => 70,
-            'client' => Client::novo()
+            'client' => null,
+            'verbose' => false,
+            'logger' => null
         ];
 
         $opt = array_merge($opcoesPadrao, $opcoes);
+
+        if(!$opt['logger']){
+            $opt['logger'] = new ImprimeNaTelaLogger($opt['verbose']);
+        }
+
+        if(!$opt['client']){
+            $opt['client'] = Client::novo($opt['logger']);
+        }
 
         switch($tipoCalculador){
             case self::CALCULADOR_TUDO_SEPARADO:

@@ -7,6 +7,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Client;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoJunto;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 
 class CalculadorTudoJuntoTest extends TestCase
 {
@@ -113,7 +114,7 @@ class CalculadorTudoJuntoTest extends TestCase
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
-        $curlAdapter = new CurlAdapter($httpMock);
+        $curlAdapter = new CurlAdapter($httpMock, new ImprimeNaTelaLogger);
 
         return new Client($curlAdapter);
     }
