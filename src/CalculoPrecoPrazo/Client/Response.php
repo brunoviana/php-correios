@@ -62,7 +62,7 @@ class Response
     public function entregaDomiciliar()
     {
         // Isso pode acontecer na conversão do retorno para array
-        if (is_array($this->dados['EntregaDomiciliar'])) {
+        if (is_array($this->dados['EntregaDomiciliar']) && empty($this->dados['EntregaDomiciliar'])) {
             return '';
         }
 
@@ -72,7 +72,7 @@ class Response
     public function entregaSabado()
     {
         // Isso pode acontecer na conversão do retorno para array
-        if (is_array($this->dados['EntregaSabado'])) {
+        if (is_array($this->dados['EntregaSabado']) && empty($this->dados['EntregaSabado'])) {
             return '';
         }
 
@@ -82,7 +82,10 @@ class Response
     public function observacao()
     {
         // Isso pode acontecer na conversão do retorno para array
-        if (!isset($this->dados['obsFim']) || is_array($this->dados['obsFim'])) {
+        if (
+            !isset($this->dados['obsFim']) ||
+            (is_array($this->dados['obsFim']) && empty($this->dados['obsFim']))
+        ) {
             return '';
         }
 
@@ -97,7 +100,7 @@ class Response
     public function mensagemErro()
     {
         // Isso pode acontecer na conversão do retorno para array
-        if (is_array($this->dados['MsgErro'])) {
+        if (is_array($this->dados['MsgErro']) && empty($this->dados['MsgErro'])) {
             return '';
         }
 
@@ -106,9 +109,13 @@ class Response
 
     private function formataValor($valor)
     {
-        $valorSoDigitos = preg_replace('/\D/', '', $valor);
+        if (is_string($valor)) {
+            $valorSoDigitos = preg_replace('/\D/', '', $valor);
 
-        return (float) $valorSoDigitos / 100;
+            return (float) $valorSoDigitos / 100;
+        }
+
+        return $valor;
     }
 
     public function emArray()

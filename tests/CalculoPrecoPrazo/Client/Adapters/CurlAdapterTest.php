@@ -4,7 +4,7 @@ namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Client;
 
 use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
 
 class CurlAdapterTest extends TestCase
 {

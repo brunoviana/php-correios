@@ -3,9 +3,9 @@
 namespace BrunoViana\Correios\CalculoPrecoPrazo;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\ClientInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\ClientInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\AdapterInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\AdapterInterface;
 
 class Client implements ClientInterface
 {

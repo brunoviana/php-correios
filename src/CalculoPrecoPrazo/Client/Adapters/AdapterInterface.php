@@ -1,6 +1,6 @@
 <?php
 
-namespace BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client;
+namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
 

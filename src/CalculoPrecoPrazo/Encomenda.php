@@ -2,13 +2,13 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo;
 
-use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Item;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Rolo;
-use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Envelope;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\EncomendaInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\EncomendaInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa\CalculoUnicoItem;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa\CalculoRaizCubica;
 
-abstract class Encomenda implements EncomendaInterface
+abstract class Encomenda
 {
     const CAIXA = 1;
 
@@ -22,7 +22,7 @@ abstract class Encomenda implements EncomendaInterface
 
     protected $pesoTotal = 0;
 
-    public static function nova($formato = 0)
+    public static function nova($formato = 0, $unicoItem = false) : EncomendaInterface
     {
         if (! in_array($formato, self::formatosValidos())) {
             throw new \RuntimeException('Formato de encomenda passado não é válido: ' . $formato);
@@ -30,7 +30,7 @@ abstract class Encomenda implements EncomendaInterface
 
         switch ($formato) {
             case self::CAIXA:
-                return new Caixa();
+                return $unicoItem ? new CalculoUnicoItem() : new CalculoRaizCubica();
 
             case self::ROLO:
                 return new Rolo();
@@ -48,50 +48,4 @@ abstract class Encomenda implements EncomendaInterface
             self::ENVELOPE,
         ];
     }
-
-    public function item(
-        int $quantidade,
-        float $peso,
-        float $comprimento,
-        float $altura,
-        float $largura,
-        float $diametro = 0
-    ) : Item {
-        $item = new Item(
-            $quantidade,
-            $peso,
-            $comprimento,
-            $altura,
-            $largura,
-            $diametro
-        );
-
-        $this->itens[] = $item;
-        $this->pesoTotal += $this->calculaPeso($item);
-
-        return $item;
-    }
-
-    public function itens() : array
-    {
-        return $this->itens;
-    }
-
-    protected function calculaPeso(Item $item)
-    {
-        return $item->peso() * $item->quantidade();
-    }
-
-    public function peso()
-    {
-        return $this->pesoTotal > self::PESO_MINIMO ? $this->pesoTotal : self::PESO_MINIMO;
-    }
-
-    abstract public function altura();
-
-    abstract public function largura();
-
-    abstract public function comprimento();
-
-    abstract public function diametro();
 }

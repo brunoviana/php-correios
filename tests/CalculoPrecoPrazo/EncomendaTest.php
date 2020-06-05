@@ -5,8 +5,9 @@ namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo;
 use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Rolo;
-use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Envelope;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa\CalculoUnicoItem;
+use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Caixa\CalculoRaizCubica;
 
 class EncomendaTest extends TestCase
 {
@@ -14,7 +15,14 @@ class EncomendaTest extends TestCase
     {
         $encomenda = Encomenda::nova(Encomenda::CAIXA);
 
-        $this->assertInstanceOf(Caixa::class, $encomenda);
+        $this->assertInstanceOf(CalculoRaizCubica::class, $encomenda);
+    }
+
+    public function test_Deve_Retornar_Instancia_Caixa_Com_Unico_Item_Corretamente()
+    {
+        $encomenda = Encomenda::nova(Encomenda::CAIXA, true);
+
+        $this->assertInstanceOf(CalculoUnicoItem::class, $encomenda);
     }
 
     public function test_Deve_Retornar_Instancia_Rolo_Corretamente()
@@ -36,15 +44,5 @@ class EncomendaTest extends TestCase
         $this->expectException(\RuntimeException::class);
 
         Encomenda::nova(0);
-    }
-
-    public function test_Deve_Inserir_Item_Com_Sucesso()
-    {
-        $encomenda = Encomenda::nova(Encomenda::CAIXA);
-
-        $item = $encomenda->item(1, 0.500, 17, 15, 12, 0);
-
-        $this->assertCount(1, $encomenda->itens());
-        $this->assertEquals($item, $encomenda->itens()[0]);
     }
 }

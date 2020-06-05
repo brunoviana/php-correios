@@ -2,8 +2,6 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Http;
 
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
-
 class Curl implements HttpRequestInterface
 {
     private $handle = null;

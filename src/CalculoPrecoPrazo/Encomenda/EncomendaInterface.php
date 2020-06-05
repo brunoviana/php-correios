@@ -1,8 +1,6 @@
 <?php
 
-namespace BrunoViana\Correios\CalculoPrecoPrazo\Interfaces;
-
-use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda\Item;
+namespace BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
 
 interface EncomendaInterface
 {
@@ -12,7 +10,7 @@ interface EncomendaInterface
         float $comprimento,
         float $altura,
         float $largura,
-        float $diametro = 0
+        float $diametro
     ) : Item;
 
     public function itens() : array;
