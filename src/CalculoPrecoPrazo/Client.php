@@ -2,11 +2,11 @@
 
 namespace BrunoViana\Correios\CalculoPrecoPrazo;
 
+use Psr\Log\LoggerInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\ClientInterface;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\AdapterInterface;
-use Psr\Log\LoggerInterface;
 
 class Client implements ClientInterface
 {

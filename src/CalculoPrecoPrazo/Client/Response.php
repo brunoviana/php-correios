@@ -82,8 +82,7 @@ class Response
     public function observacao()
     {
         // Isso pode acontecer na conversão do retorno para array
-        if (
-            !isset($this->dados['obsFim']) ||
+        if (!isset($this->dados['obsFim']) ||
             (is_array($this->dados['obsFim']) && empty($this->dados['obsFim']))
         ) {
             return '';

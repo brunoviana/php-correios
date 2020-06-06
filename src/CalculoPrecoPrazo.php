@@ -2,12 +2,12 @@
 
 namespace BrunoViana\Correios;
 
+use BrunoViana\Correios\CalculoPrecoPrazo\Client;
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
-use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorDimensaoLimiteSeparado;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoJunto;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoSeparado;
-use BrunoViana\Correios\CalculoPrecoPrazo\Client;
-use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
+use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorDimensaoLimiteSeparado;
 
 class CalculoPrecoPrazo
 {
@@ -26,8 +26,7 @@ class CalculoPrecoPrazo
     public function calculador(
         $opcoes = [],
         int $tipoCalculador = self::CALCULADOR_DIMENSAO_LIMITE_SEPARADO
-    )
-    {
+    ) {
         $opcoesPadrao = [
             'limite_dimensao' => 70,
             'client' => null,
@@ -37,15 +36,15 @@ class CalculoPrecoPrazo
 
         $opt = array_merge($opcoesPadrao, $opcoes);
 
-        if(!$opt['logger']){
+        if (!$opt['logger']) {
             $opt['logger'] = new ImprimeNaTelaLogger($opt['verbose']);
         }
 
-        if(!$opt['client']){
+        if (!$opt['client']) {
             $opt['client'] = Client::novo($opt['logger']);
         }
 
-        switch($tipoCalculador){
+        switch ($tipoCalculador) {
             case self::CALCULADOR_TUDO_SEPARADO:
                 return new CalculadorTudoSeparado($opt['client']);
 

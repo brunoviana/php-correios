@@ -8,7 +8,7 @@ use BrunoViana\Correios\CalculoPrecoPrazo\Servico;
 $calculador = (new CalculoPrecoPrazo())->calculador(
     [
         'verbose' => true
-    ], 
+    ],
     CalculoPrecoPrazo::CALCULADOR_TUDO_SEPARADO
 );
 

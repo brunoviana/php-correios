@@ -11,7 +11,7 @@ class CalculadorDimensaoLimiteSeparado extends AbstractCalculador
 {
     protected $dimensaoLimite;
 
-    public function __construct(ClientInterface $client, $dimensaoLimite=70)
+    public function __construct(ClientInterface $client, $dimensaoLimite = 70)
     {
         parent::__construct($client);
 

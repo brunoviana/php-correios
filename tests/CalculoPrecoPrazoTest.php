@@ -5,13 +5,12 @@ namespace BrunoViana\Correios;
 use BrunoViana\Correios\Tests\TestCase;
 
 use BrunoViana\Correios\CalculoPrecoPrazo\Encomenda;
-use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorDimensaoLimiteSeparado;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoJunto;
 use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorTudoSeparado;
+use BrunoViana\Correios\CalculoPrecoPrazo\Services\CalculadorDimensaoLimiteSeparado;
 
 class CalculoPrecoPrazoTest extends TestCase
 {
-
     public function test_Deve_Retornar_Calculador_Padrao_Corretamente()
     {
         $precoPrazo = new CalculoPrecoPrazo();
@@ -24,7 +23,8 @@ class CalculoPrecoPrazoTest extends TestCase
     {
         $precoPrazo = new CalculoPrecoPrazo();
         $calculador = $precoPrazo->calculador(
-            [], CalculoPrecoPrazo::CALCULADOR_DIMENSAO_LIMITE_SEPARADO
+            [],
+            CalculoPrecoPrazo::CALCULADOR_DIMENSAO_LIMITE_SEPARADO
         );
 
         $this->assertInstanceOf(CalculadorDimensaoLimiteSeparado::class, $calculador);
@@ -34,7 +34,8 @@ class CalculoPrecoPrazoTest extends TestCase
     {
         $precoPrazo = new CalculoPrecoPrazo();
         $calculador = $precoPrazo->calculador(
-            [], CalculoPrecoPrazo::CALCULADOR_TUDO_JUNTO
+            [],
+            CalculoPrecoPrazo::CALCULADOR_TUDO_JUNTO
         );
 
         $this->assertInstanceOf(CalculadorTudoJunto::class, $calculador);
@@ -44,7 +45,8 @@ class CalculoPrecoPrazoTest extends TestCase
     {
         $precoPrazo = new CalculoPrecoPrazo();
         $calculador = $precoPrazo->calculador(
-            [], CalculoPrecoPrazo::CALCULADOR_TUDO_SEPARADO
+            [],
+            CalculoPrecoPrazo::CALCULADOR_TUDO_SEPARADO
         );
 
         $this->assertInstanceOf(CalculadorTudoSeparado::class, $calculador);
@@ -54,10 +56,11 @@ class CalculoPrecoPrazoTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Calculador inválido');
-        
+
         $precoPrazo = new CalculoPrecoPrazo();
         $calculador = $precoPrazo->calculador(
-            [], -1
+            [],
+            -1
         );
     }
 
