@@ -5,19 +5,16 @@ require '../../vendor/autoload.php';
 use BrunoViana\Correios\CalculoPrecoPrazo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Servico;
 
-$calculador = CalculoPrecoPrazo::calculador();
+$calculador = (new CalculoPrecoPrazo())->calculador([
+    'verbose' => true
+]);
+
 $calculador->servicos([
     Servico::PAC_41106,
 ])
-->itens([
-    [
-        'quantidade' => 1,
-        'peso' => 0.71,
-        'comprimento' => 31,
-        'altura' => 27,
-        'largura' => 31,
-    ],
-])
+->item(1, 0.71, 31, 27, 31, 0)
+->item(1, 0.71, 31, 27, 31, 0)
+->item(1, 0.71, 90, 10, 30, 0)
 ->usuario('')
 ->senha('')
 ->origem('60842-130')
@@ -29,7 +26,7 @@ $calculador->servicos([
 
 $responses = $calculador->calcular();
 
-echo '<pre>';
+echo '<strong>Resposta final do PHP Correios</strong>';
 
 // Retorna um array onde cada índice é o resultado de um serviço consultado
 foreach ($responses as $response) {
@@ -39,5 +36,5 @@ foreach ($responses as $response) {
     }
 
     // Você pode usar os métodos ou transformar tudo em array
-    print_r((array) $response->emArray());
+    dump((array) $response->emArray());
 }

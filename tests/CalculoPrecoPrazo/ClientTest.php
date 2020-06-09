@@ -6,8 +6,9 @@ use BrunoViana\Correios\Tests\TestCase;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Request;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Response;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
 
 class ClientTest extends TestCase
 {
@@ -22,7 +23,7 @@ class ClientTest extends TestCase
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
-        $curlAdapter = new CurlAdapter($httpMock);
+        $curlAdapter = new CurlAdapter($httpMock, new ImprimeNaTelaLogger());
 
         $request = new Request([
             'servicos' => [

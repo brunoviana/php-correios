@@ -39,21 +39,6 @@ class ItemTest extends TestCase
         $this->assertEquals(4, $this->item()->diametro());
     }
 
-    public function test_Item_Deve_Retornar_Diametro_Zero_Se_Nao_Informado_Com_Sucesso()
-    {
-        list($quantidade, $peso, $comprimento, $altura, $largura, $diametro) = $this->valoresItem;
-
-        $item = new Item(
-            $quantidade,
-            $peso,
-            $comprimento,
-            $altura,
-            $largura
-        );
-
-        $this->assertEquals(0, $item->diametro());
-    }
-
     private function item()
     {
         list($quantidade, $peso, $comprimento, $altura, $largura, $diametro) = $this->valoresItem;

@@ -5,28 +5,26 @@ require '../../vendor/autoload.php';
 use BrunoViana\Correios\CalculoPrecoPrazo;
 use BrunoViana\Correios\CalculoPrecoPrazo\Servico;
 
-$calculador = CalculoPrecoPrazo::calculador([
-    'servicos' => [
-        Servico::PAC_41106,
+$calculador = (new CalculoPrecoPrazo())->calculador();
+$calculador->servicos([
+    Servico::PAC_41106,
+])
+->itens([
+    [
+        'quantidade' => 1,
+        'peso' => 1,
+        'comprimento' => 31,
+        'diametro' => 15,
     ],
-    'itens' => [
-        [
-            'quantidade' => 1,
-            'peso' => 0.71,
-            'comprimento' => 31,
-            'altura' => 27,
-            'largura' => 31,
-        ],
-    ],
-    'usuario' => '',
-    'senha' => '',
-    'origem' => '60842-130',
-    'destino' => '22775-051',
-    'formato' => CalculoPrecoPrazo::CAIXA,
-    'mao_propria' => false,
-    'valor_declarado' => 0,
-    'aviso_recebimento' => false,
-]);
+])
+->usuario('')
+->senha('')
+->origem('60842-130')
+->destino('22775-051')
+->formato(CalculoPrecoPrazo::ROLO)
+->maoPropria('N')
+->valorDeclarado(0)
+->avisoRecebimento('N');
 
 $responses = $calculador->calcular();
 

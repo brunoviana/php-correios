@@ -22,7 +22,7 @@ class Item
         float $comprimento,
         float $altura,
         float $largura,
-        float $diametro = 0
+        float $diametro
     ) {
         $this->quantidade = $quantidade;
         $this->peso = $peso;

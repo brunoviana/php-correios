@@ -183,6 +183,14 @@ class ResponseTest extends TestCase
             '',
             $response3->observacao()
         );
+
+        // pode acontecer de não retornar observacao
+        $response3 = new Response([], 200);
+
+        $this->assertEquals(
+            '',
+            $response3->observacao()
+        );
     }
 
     public function test_Deve_Retornar_Erro_Com_Sucesso()

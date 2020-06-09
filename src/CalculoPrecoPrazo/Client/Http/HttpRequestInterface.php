@@ -1,6 +1,6 @@
 <?php
 
-namespace BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client;
+namespace BrunoViana\Correios\CalculoPrecoPrazo\Client\Http;
 
 interface HttpRequestInterface
 {

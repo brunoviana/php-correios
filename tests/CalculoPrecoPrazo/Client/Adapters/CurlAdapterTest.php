@@ -3,8 +3,9 @@
 namespace BrunoViana\Correios\Tests\CalculoPrecoPrazo\Client;
 
 use BrunoViana\Correios\Tests\TestCase;
+use BrunoViana\Correios\CalculoPrecoPrazo\Logger\ImprimeNaTelaLogger;
 use BrunoViana\Correios\CalculoPrecoPrazo\Client\Adapters\CurlAdapter;
-use BrunoViana\Correios\CalculoPrecoPrazo\Interfaces\Client\HttpRequestInterface;
+use BrunoViana\Correios\CalculoPrecoPrazo\Client\Http\HttpRequestInterface;
 
 class CurlAdapterTest extends TestCase
 {
@@ -26,12 +27,14 @@ class CurlAdapterTest extends TestCase
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(200);
 
-        $client = new CurlAdapter($httpMock);
+        $client = new CurlAdapter($httpMock, new ImprimeNaTelaLogger());
         $response = $client->enviar(
             'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx',
             $this->parametros()
         );
 
+        $this->assertFalse(false, $client->conexaoFalhou());
+        $this->assertTrue($response->sucesso());
         $this->assertEquals('04014', $response->codigo());
         $this->assertEquals(10.00, $response->valor());
         $this->assertEquals(3, $response->prazoEntrega());
@@ -54,7 +57,7 @@ class CurlAdapterTest extends TestCase
                     ->with(CURLINFO_HTTP_CODE)
                     ->willReturn(false);
 
-        $client = new CurlAdapter($httpMock);
+        $client = new CurlAdapter($httpMock, new ImprimeNaTelaLogger());
 
         $response = $client->enviar(
             'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx',
