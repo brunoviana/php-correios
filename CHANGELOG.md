@@ -5,6 +5,8 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ## [Não publicado]
 
+## [1.0.0] - 2020-07-23
+### Adicionado
 - Encomenda tipo caixa com calculo de dimensões com vários itens usando raíz cúbica
 - Encomenta tipo caixa recebe apenas um único item e usa suas dimensões
 - Encomenda tipo rolo
