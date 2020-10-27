@@ -26,84 +26,102 @@ class Response
 
     public function codigo()
     {
-        return $this->dados['Codigo'];
+        return isset($this->dados['Codigo']) ? $this->dados['Codigo'] : null;
     }
 
     public function valor()
     {
-        return (float) $this->formataValor($this->dados['Valor']);
+        return (float) $this->formataValor(
+            isset($this->dados['Valor']) ? $this->dados['Valor'] : 0
+        );
     }
 
     public function valorSemAdicionais()
     {
-        return (float) $this->formataValor($this->dados['ValorSemAdicionais']);
+        return (float) $this->formataValor(
+            isset($this->dados['ValorSemAdicionais']) ? $this->dados['ValorSemAdicionais'] : 0
+        );
     }
 
     public function prazoEntrega()
     {
-        return (int) $this->dados['PrazoEntrega'];
+        return (int) isset($this->dados['PrazoEntrega']) ? $this->dados['PrazoEntrega'] : 0;
     }
 
     public function valorMaoPropria()
     {
-        return (float) $this->formataValor($this->dados['ValorMaoPropria']);
+        return (float) $this->formataValor(
+            isset($this->dados['ValorMaoPropria']) ? $this->dados['ValorMaoPropria'] : 0
+        );
     }
 
     public function valorAvisoRecebimento()
     {
-        return (float) $this->formataValor($this->dados['ValorAvisoRecebimento']);
+        return (float) $this->formataValor(
+            isset($this->dados['ValorAvisoRecebimento']) ? $this->dados['ValorAvisoRecebimento'] : 0
+        );
     }
 
     public function valorValorDeclarado()
     {
-        return (float) $this->formataValor($this->dados['ValorValorDeclarado']);
+        return (float) $this->formataValor(
+            isset($this->dados['ValorValorDeclarado']) ? $this->dados['ValorValorDeclarado'] : 0
+        );
     }
 
     public function entregaDomiciliar()
     {
+        $entregaDomiciliar = isset($this->dados['EntregaDomiciliar']) ? $this->dados['EntregaDomiciliar'] : null;
+
         // Isso pode acontecer na conversão do retorno para array
-        if (is_array($this->dados['EntregaDomiciliar']) && empty($this->dados['EntregaDomiciliar'])) {
+        if (is_array($entregaDomiciliar) && empty($entregaDomiciliar)) {
             return '';
         }
 
-        return $this->dados['EntregaDomiciliar'];
+        return $entregaDomiciliar;
     }
 
     public function entregaSabado()
     {
+        $entregaSabado = isset($this->dados['EntregaSabado']) ? $this->dados['EntregaSabado'] : 0;
+
         // Isso pode acontecer na conversão do retorno para array
-        if (is_array($this->dados['EntregaSabado']) && empty($this->dados['EntregaSabado'])) {
+        if (is_array($entregaSabado) && empty($entregaSabado)) {
             return '';
         }
 
-        return $this->dados['EntregaSabado'];
+        return $entregaSabado;
     }
 
     public function observacao()
     {
+        $obsFim = isset($this->dados['obsFim']) ? $this->dados['obsFim'] : 0;
+
         // Isso pode acontecer na conversão do retorno para array
         if (!isset($this->dados['obsFim']) ||
-            (is_array($this->dados['obsFim']) && empty($this->dados['obsFim']))
+            (is_array($obsFim) && empty($obsFim))
         ) {
             return '';
         }
 
-        return $this->dados['obsFim'];
+        return $obsFim;
     }
 
     public function erro()
     {
-        return $this->dados['Erro'];
+        return isset($this->dados['Erro']) ? $this->dados['Erro'] : 0;
     }
 
     public function mensagemErro()
     {
+        $msgErro = isset($this->dados['MsgErro']) ? $this->dados['MsgErro'] : 0;
+
         // Isso pode acontecer na conversão do retorno para array
-        if (is_array($this->dados['MsgErro']) && empty($this->dados['MsgErro'])) {
+        if (is_array($msgErro) && empty($msgErro)) {
             return '';
         }
 
-        return $this->dados['MsgErro'];
+        return $msgErro;
     }
 
     private function formataValor($valor)
