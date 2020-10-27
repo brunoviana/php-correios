@@ -43,6 +43,17 @@ class CurlAdapter implements AdapterInterface
 
         $response = $this->http->execute();
 
+        $this->logger->debug(
+            'Resposta dos Correios: ' . $response
+        );
+
+        if(!$response){
+            return new Response(
+                [],
+                $this->http->getInfo(CURLINFO_HTTP_CODE)
+            );
+        }
+
         $responseTransformado = $this->transformaResponse($response);
 
         $this->logger->debug(
