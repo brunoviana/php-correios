@@ -7,11 +7,11 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ## [1.1.0] - 2020-10-27
 
-#Corrigido
+###Corrigido
 - Bugifx: Erros de chave não encontrada quando Correios não retorna resultado
 - Bugfix: Respondendo Response vazio caso Correios retorne vazio por timeout
 
-#Modificado
+###Modificado
 - Ajustando ordem do log
 - Aumentando timeout para 30 segundos
 
