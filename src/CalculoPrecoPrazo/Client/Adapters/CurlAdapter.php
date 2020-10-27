@@ -37,7 +37,7 @@ class CurlAdapter implements AdapterInterface
 
         $this->http->setOption(CURLOPT_URL, $url . '?' . $params);
         $this->http->setOption(CURLOPT_RETURNTRANSFER, 1);
-        $this->http->setOption(CURLOPT_TIMEOUT, 10);
+        $this->http->setOption(CURLOPT_TIMEOUT, 30);
 
         $this->logger->debug('Enviando requisição aos Correios', $parametros);
 
