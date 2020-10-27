@@ -47,7 +47,7 @@ class CurlAdapter implements AdapterInterface
             'Resposta dos Correios: ' . $response
         );
 
-        if(!$response){
+        if (!$response) {
             return new Response(
                 [],
                 $this->http->getInfo(CURLINFO_HTTP_CODE)
