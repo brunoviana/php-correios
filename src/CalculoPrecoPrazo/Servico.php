@@ -9,6 +9,7 @@ class Servico
     const PAC_41300 = "41300";
     const PAC_41106 = "41106";
     const PAC_04596 = "04596";
+    const PAC_03085 = "03085";
     const PAC_CONTRATO_AGENCIA_04669 = "04669";
 
     const SEDEX_04553 = "04553";
@@ -18,6 +19,7 @@ class Servico
     const SEDEX_40169 = "40169";
     const SEDEX_40215 = "40215";
     const SEDEX_04014 = "04014";
+    const SEDEX_03050 = "03050";
     const SEDEX_CONTRATO_AGENCIA_04162 = "04162";
     const SEDEX10_40886 = "40886";
     const SEDEX_HOJE_40290 = "40290";
@@ -156,9 +158,19 @@ class Servico
             "nome_completo" => "PAC 04596",
             "nome" => "PAC"
         ],
+        self::PAC_03085 => [
+            "codigo" => self::PAC_03085,
+            "nome_completo" => "PAC 03085",
+            "nome" => "PAC"
+        ],
         self::SEDEX_04553 => [
             "codigo" => self::SEDEX_04553,
             "nome_completo" => "SEDEX 04553",
+            "nome" => "Sedex"
+        ],
+        self::SEDEX_03050 => [
+            "codigo" => self::SEDEX_03050,
+            "nome_completo" => "SEDEX 03050",
             "nome" => "Sedex"
         ],
     ];
@@ -171,6 +183,7 @@ class Servico
             Servico::PAC_41300,
             Servico::PAC_41106,
             Servico::PAC_04596,
+            Servico::PAC_03085,
             Servico::PAC_CONTRATO_AGENCIA_04669,
             Servico::SEDEX_40096,
             Servico::SEDEX_04553,
@@ -179,6 +192,7 @@ class Servico
             Servico::SEDEX_40169,
             Servico::SEDEX_40215,
             Servico::SEDEX_04014,
+            Servico::SEDEX_03050,
             Servico::SEDEX_CONTRATO_AGENCIA_04162,
             Servico::SEDEX10_40886,
             Servico::SEDEX_HOJE_40290,

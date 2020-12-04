@@ -18,6 +18,7 @@ class ServicoTest extends TestCase
             Servico::PAC_41300,
             Servico::PAC_41106,
             Servico::PAC_04596,
+            Servico::PAC_03085,
             Servico::PAC_CONTRATO_AGENCIA_04669,
             Servico::SEDEX_40096,
             Servico::SEDEX_04553,
@@ -26,6 +27,7 @@ class ServicoTest extends TestCase
             Servico::SEDEX_40169,
             Servico::SEDEX_40215,
             Servico::SEDEX_04014,
+            Servico::SEDEX_03050,
             Servico::SEDEX_CONTRATO_AGENCIA_04162,
             Servico::SEDEX10_40886,
             Servico::SEDEX_HOJE_40290,
@@ -142,6 +144,14 @@ class ServicoTest extends TestCase
         $this->assertEquals('SEDEX 04553', Servico::nomeCompleto(
             Servico::SEDEX_04553
         ));
+
+        $this->assertEquals('PAC 03085', Servico::nomeCompleto(
+            Servico::PAC_03085
+        ));
+
+        $this->assertEquals('SEDEX 03050', Servico::nomeCompleto(
+            Servico::SEDEX_03050
+        ));
     }
 
     public function test_Retornar_Nome_Completo_Nulo_Se_Codigo_Nao_Existir()
@@ -251,6 +261,14 @@ class ServicoTest extends TestCase
 
         $this->assertEquals('Sedex', Servico::nome(
             Servico::SEDEX_04553
+        ));
+
+        $this->assertEquals('PAC', Servico::nome(
+            Servico::PAC_03085
+        ));
+
+        $this->assertEquals('Sedex', Servico::nome(
+            Servico::SEDEX_03050
         ));
     }
 
