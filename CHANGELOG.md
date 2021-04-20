@@ -6,19 +6,19 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 ## [Não publicado]
 
 ## [1.3.0] - 2021-04-20
-###Adicionado
+### Adicionado
 - Adicionado novos códigos dos Correios 03298 (PAC) e 03220 (Sedex)
 
 ## [1.2.0] - 2020-12-04
-###Adicionado
+### Adicionado
 - Adicionado novos códigos dos Correios 03085 (PAC) e 03050 (Sedex)
 
 ## [1.1.0] - 2020-10-27
-###Corrigido
+### Corrigido
 - Bugifx: Erros de chave não encontrada quando Correios não retorna resultado
 - Bugfix: Respondendo Response vazio caso Correios retorne vazio por timeout
 
-###Modificado
+### Modificado
 - Ajustando ordem do log
 - Aumentando timeout para 30 segundos
 
