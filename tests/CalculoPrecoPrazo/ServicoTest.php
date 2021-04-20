@@ -12,35 +12,7 @@ class ServicoTest extends TestCase
         $servicos = Servico::todos();
 
         $this->assertEquals(count(Servico::NOMES_SERVICOS), count($servicos));
-        $this->assertEquals([
-            Servico::PAC_41068,
-            Servico::PAC_04510,
-            Servico::PAC_41300,
-            Servico::PAC_41106,
-            Servico::PAC_04596,
-            Servico::PAC_03085,
-            Servico::PAC_CONTRATO_AGENCIA_04669,
-            Servico::SEDEX_40096,
-            Servico::SEDEX_04553,
-            Servico::SEDEX_40436,
-            Servico::SEDEX_40444,
-            Servico::SEDEX_40169,
-            Servico::SEDEX_40215,
-            Servico::SEDEX_04014,
-            Servico::SEDEX_03050,
-            Servico::SEDEX_CONTRATO_AGENCIA_04162,
-            Servico::SEDEX10_40886,
-            Servico::SEDEX_HOJE_40290,
-            Servico::SEDEX_HOJE_40878,
-            Servico::SEDEX_VAREJO_A_COBRAR_40045,
-            Servico::SEDEX_AGRUPADO_41009,
-            Servico::SEDEX_REVERSO_40380,
-            Servico::SEDEX_PAGAMENTO_NA_ENTREGA_40630,
-            Servico::ESEDEX_81019,
-            Servico::CARTA_COMERCIAL_10065,
-            Servico::CARTA_REGISTRADA_10014,
-            Servico::CARTA_COMERCIAL_REGISTRADA_10707,
-        ], $servicos);
+        $this->assertEquals(array_keys(Servico::NOMES_SERVICOS), $servicos);
     }
 
     public function test_Retornar_Nome_Completo_Dos_Servicos()

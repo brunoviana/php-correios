@@ -10,8 +10,10 @@ class Servico
     const PAC_41106 = "41106";
     const PAC_04596 = "04596";
     const PAC_03085 = "03085";
+    const PAC_03298 = "03298";
     const PAC_CONTRATO_AGENCIA_04669 = "04669";
 
+    const SEDEX_03220 = "03220";
     const SEDEX_04553 = "04553";
     const SEDEX_40096 = "40096";
     const SEDEX_40436 = "40436";
@@ -173,39 +175,21 @@ class Servico
             "nome_completo" => "SEDEX 03050",
             "nome" => "Sedex"
         ],
+        self::PAC_03298 => [
+            "codigo" => self::PAC_03298,
+            "nome_completo" => "PAC 03298",
+            "nome" => "Pac"
+        ],
+        self::SEDEX_03220 => [
+            "codigo" => self::SEDEX_03220,
+            "nome_completo" => "SEDEX 03220",
+            "nome" => "Sedex"
+        ],
     ];
 
     public static function todos()
     {
-        return [
-            Servico::PAC_41068,
-            Servico::PAC_04510,
-            Servico::PAC_41300,
-            Servico::PAC_41106,
-            Servico::PAC_04596,
-            Servico::PAC_03085,
-            Servico::PAC_CONTRATO_AGENCIA_04669,
-            Servico::SEDEX_40096,
-            Servico::SEDEX_04553,
-            Servico::SEDEX_40436,
-            Servico::SEDEX_40444,
-            Servico::SEDEX_40169,
-            Servico::SEDEX_40215,
-            Servico::SEDEX_04014,
-            Servico::SEDEX_03050,
-            Servico::SEDEX_CONTRATO_AGENCIA_04162,
-            Servico::SEDEX10_40886,
-            Servico::SEDEX_HOJE_40290,
-            Servico::SEDEX_HOJE_40878,
-            Servico::SEDEX_VAREJO_A_COBRAR_40045,
-            Servico::SEDEX_AGRUPADO_41009,
-            Servico::SEDEX_REVERSO_40380,
-            Servico::SEDEX_PAGAMENTO_NA_ENTREGA_40630,
-            Servico::ESEDEX_81019,
-            Servico::CARTA_COMERCIAL_10065,
-            Servico::CARTA_REGISTRADA_10014,
-            Servico::CARTA_COMERCIAL_REGISTRADA_10707,
-        ];
+        return array_keys(self::NOMES_SERVICOS);
     }
 
     public static function nomeCompleto($codigo)

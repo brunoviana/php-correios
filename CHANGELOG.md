@@ -5,6 +5,10 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ## [Não publicado]
 
+## [1.3.0] - 2021-04-20
+###Adicionado
+- Adicionado novos códigos dos Correios 03298 (PAC) e 03220 (Sedex)
+
 ## [1.2.0] - 2020-12-04
 ###Adicionado
 - Adicionado novos códigos dos Correios 03085 (PAC) e 03050 (Sedex)
