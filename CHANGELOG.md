@@ -5,6 +5,9 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 
 ## [Não publicado]
 
+## [1.3.1] - 2021-08-26
+### Corrigido
+- Bugfix: Calculo da Raiz cubica para itens com mais de uma quantidade.
 ## [1.3.0] - 2021-04-20
 ### Adicionado
 - Adicionado novos códigos dos Correios 03298 (PAC) e 03220 (Sedex)
