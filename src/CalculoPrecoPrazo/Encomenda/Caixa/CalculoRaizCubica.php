@@ -17,6 +17,8 @@ class CalculoRaizCubica implements EncomendaInterface
 
     private $raizCubicaTotal = 0;
 
+    private $centimentroCubicoTotal = 0;
+
     private $pesoTotal = 0;
 
     public function item(
@@ -38,7 +40,8 @@ class CalculoRaizCubica implements EncomendaInterface
 
         $this->itens[] = $item;
         $this->pesoTotal += $this->calculaPeso($item);
-        $this->raizCubicaTotal += $this->calculaRaizCubica($item);
+        $this->centimentroCubicoTotal += $this->calculaCentimentroCubico($item);
+        $this->raizCubicaTotal = $this->calculaRaizCubica($item);
 
         return $item;
     }
@@ -78,10 +81,13 @@ class CalculoRaizCubica implements EncomendaInterface
         return $item->peso() * $item->quantidade();
     }
 
+    protected function calculaCentimentroCubico(Item $item)
+    {
+        return (($item->altura() * $item->largura() * $item->comprimento()) * $item->quantidade());
+    }
+
     protected function calculaRaizCubica(Item $item)
     {
-        $centimentroCubico = ($item->altura() * $item->largura() * $item->comprimento());
-
-        return round(pow($centimentroCubico, 1 / 3), 2) * $item->quantidade();
+        return round(pow($this->centimentroCubicoTotal, 1 / 3), 2);
     }
 }

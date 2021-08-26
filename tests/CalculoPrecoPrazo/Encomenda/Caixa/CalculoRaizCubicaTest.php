@@ -89,6 +89,7 @@ class CalculoRaizCubicaTest extends TestCase
     public function test_Caixa_Deve_Retornar_Dimensoes_Cubicas_Corretamente($arrayComItens)
     {
         $somaRaizCubica = 0;
+        $centimentroCubicoTotal = 0;
         foreach ($arrayComItens as $arrayComItem) {
             list(
                 $qtd,
@@ -108,8 +109,8 @@ class CalculoRaizCubicaTest extends TestCase
                 $diametro
             );
 
-            $centimentroCubico = ($altura * $largura * $comprimento);
-            $somaRaizCubica += round(pow($centimentroCubico, 1 / 3), 2) * $qtd;
+            $centimentroCubicoTotal += ($altura * $largura * $comprimento) * $qtd;
+            $somaRaizCubica = round(pow($centimentroCubicoTotal, 1 / 3), 2);
         }
 
         $this->assertEquals($somaRaizCubica, $this->caixa->altura());
